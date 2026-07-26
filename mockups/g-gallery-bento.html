@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup G · Gallery Bento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Karla:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#141210; --card:#1A1715; --card-2:#201C19; --hair:#2F2A25; --hair-hi:#4D453D;
+    --cream:#EDE6DC; --dim:#9C948A; --faint:#5F5952;
+    --brass:#C3A572; --brass-hi:#E2C892; --brass-dark:#8C7347;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void); color:var(--cream);
+    font-family:'Karla',sans-serif; font-size:15px; line-height:1.7; font-weight:300;
+    background-image:radial-gradient(90% 40% at 50% 0%, rgba(195,165,114,.05), transparent 60%);
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:48px 28px 90px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--brass);color:var(--void)}
+  .serif{font-family:'Cormorant Garamond',serif}
+
+  /* header */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:44px}
+  .top .mark{font-family:'Cormorant Garamond',serif;font-size:21px;letter-spacing:.3em;color:var(--brass)}
+  .top .mark small{display:block;font-family:'Karla',sans-serif;font-size:10px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--faint);margin-top:2px}
+  .top .cta{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);
+    border:1px solid var(--hair-hi);padding:13px 26px;transition:border-color .3s,color .3s}
+  .top .cta:hover{border-color:var(--brass);color:var(--brass-hi)}
+
+  /* bento grid — F's materials on D's bones */
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .cell{background:var(--card);border:1px solid var(--hair);padding:30px;position:relative;
+    transition:border-color .35s,background .35s}
+  .cell:hover{border-color:var(--hair-hi);background:var(--card-2)}
+  .lbl{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);
+    margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .lbl::before{content:'';width:18px;height:1px;background:var(--brass-dark)}
+
+  /* hero cell */
+  .hero{grid-column:span 8;padding:40px;
+    background:radial-gradient(110% 150% at 88% -18%, rgba(195,165,114,.09), transparent 55%), var(--card)}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(34px,4.8vw,56px);line-height:1.06;letter-spacing:.01em}
+  .hero h1 em{font-style:italic;color:var(--brass-hi)}
+  .hero p{color:var(--dim);margin-top:18px;max-width:54ch;font-size:15.5px}
+  .hero p b{color:var(--cream);font-weight:500}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .tag{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;
+    border:1px solid var(--hair);color:var(--dim)}
+  .tag.hot{border-color:var(--brass-dark);color:var(--brass)}
+
+  /* status cell */
+  .status{grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between}
+  .status .big{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;line-height:1.15}
+  .status .big em{font-style:italic;color:var(--brass-hi)}
+  .status .big small{display:block;font-family:'Karla',sans-serif;font-size:12.5px;font-weight:300;
+    color:var(--dim);margin-top:8px;letter-spacing:.04em}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brass);
+    margin-right:9px;vertical-align:2px;animation:pulse 2.6s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(195,165,114,.45)}60%{box-shadow:0 0 0 8px rgba(195,165,114,0)}}
+  .status .rows{margin-top:22px}
+  .status .row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--hair);
+    font-size:12.5px;color:var(--dim)}
+  .status .row b{color:var(--cream);font-weight:500}
+
+  /* project cells */
+  .proj{grid-column:span 4;min-height:270px;display:flex;flex-direction:column}
+  .proj .no{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--faint);
+    transition:color .3s}
+  .proj:hover .no{color:var(--brass-hi)}
+  .proj h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:8px 0 10px}
+  .proj p{font-size:13.5px;color:var(--dim);flex:1}
+  .proj .foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;
+    border-top:1px solid var(--hair);padding-top:14px}
+  .proj .links{display:flex;gap:18px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  .proj .links a{color:var(--dim);border-bottom:1px solid var(--hair-hi);padding-bottom:2px;
+    transition:color .3s,border-color .3s}
+  .proj .links a:hover{color:var(--brass-hi);border-color:var(--brass)}
+  .proj .live{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+
+  /* experience cells */
+  .xp{grid-column:span 6}
+  .xp .co{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .xp .co h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px}
+  .xp .co .when{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--brass)}
+  .xp .role{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+  .xp ul{list-style:none;font-size:13.5px;color:var(--dim)}
+  .xp li{padding:8px 0;border-top:1px solid var(--hair)}
+  .xp li b{color:var(--cream);font-weight:500}
+  .xp .mat{margin-top:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+
+  /* toolkit cell */
+  .stack{grid-column:span 8}
+  .stack .groups{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stack h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+    font-size:17px;color:var(--brass);margin-bottom:10px}
+  .stack ul{list-style:none;font-size:13px;color:var(--dim)}
+  .stack li{padding:3px 0}
+  .stack li.hi{color:var(--cream)}
+
+  /* details cell */
+  .meta{grid-column:span 4}
+  .meta .row{display:flex;justify-content:space-between;padding:10.5px 0;border-bottom:1px solid var(--hair);
+    font-size:13px;color:var(--dim)}
+  .meta .row:last-child{border-bottom:none}
+  .meta .row b{color:var(--cream);font-weight:500}
+
+  /* contact cell */
+  .contact{grid-column:span 12;text-align:center;padding:64px 30px;
+    background:radial-gradient(70% 160% at 50% 120%, rgba(195,165,114,.1), transparent 60%), var(--card)}
+  .contact .rsvp{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+  .contact h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.1}
+  .contact h2 em{font-style:italic;color:var(--brass-hi)}
+  .contact .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+  .btn{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:15px 30px;transition:all .3s}
+  .btn.pri{background:var(--brass);color:#241D12;font-weight:600}
+  .btn.pri:hover{background:var(--brass-hi)}
+  .btn.sec{border:1px solid var(--hair-hi);color:var(--cream)}
+  .btn.sec:hover{border-color:var(--brass);color:var(--brass-hi)}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  @media (max-width:900px){
+    .hero,.status,.proj,.xp,.stack,.meta{grid-column:span 12}
+    .stack .groups{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">R·F<small>Berlin · Est. 2019</small></div>
+    <a class="cta" href="mailto:raheedfarooq65@gmail.com">Enquiries</a>
+  </div>
+
+  <div class="bento">
+
+    <div class="cell hero reveal">
+      <div class="lbl">Raheed Farooq — Full-Stack Engineer</div>
+      <h1>Software, built <em>with intention.</em></h1>
+      <p>High-traffic <b>TypeScript products</b>, end to end — React/Next.js interfaces, Node.js services, and the data &amp; observability layers underneath. Drawn to the gnarly parts: <b>payments, event-driven systems, pipelines</b>, and the monitoring that keeps them honest.</p>
+      <div class="tags">
+        <span class="tag hot">TypeScript</span><span class="tag">React · Next.js</span>
+        <span class="tag">Node.js</span><span class="tag">GraphQL</span><span class="tag hot">Datadog</span>
+      </div>
+    </div>
+
+    <div class="cell status reveal">
+      <div class="lbl">Presently</div>
+      <div class="big"><span class="dot"></span>Quietly <em>shipping.</em><small>Berlin · UTC+1 · since 2019</small></div>
+      <div class="rows">
+        <div class="row"><span>Current focus</span><b>Booking &amp; loyalty infra</b></div>
+        <div class="row"><span>Network</span><b>Toptal-vetted</b></div>
+        <div class="row"><span>Open to</span><b>Interesting problems</b></div>
+      </div>
+    </div>
+
+    <div class="cell proj reveal">
+      <span class="no">No. 1</span>
+      <h3>Voyager</h3>
+      <p>An interactive 3D globe of world history — who was alive, anywhere on Earth, at any moment across five thousand years. Procedural WebGL beneath an antique-atlas surface.</p>
+      <div class="foot">
+        <div class="links"><a href="https://voyager-rouge-nine.vercel.app">Demo</a><a href="https://github.com/RaheedFarooq/Voyager">Source</a></div>
+        <span class="live">● Live</span>
+      </div>
+    </div>
+
+    <div class="cell proj reveal">
+      <span class="no">No. 2</span>
+      <h3>Shark</h3>
+      <p>A brutally honest AI product evaluator for Claude Code — scored teardowns, competitive research, and strategic action plans. Truth over comfort.</p>
+      <div class="foot">
+        <div class="links"><a href="https://github.com/RaheedFarooq/shark">Source</a></div>
+        <span class="live">Open source</span>
+      </div>
+    </div>
+
+    <div class="cell proj reveal">
+      <span class="no">No. 3</span>
+      <h3>CustomApis</h3>
+      <p>A schema-based mock API generator — describe the shape, receive living endpoints. Built to unblock front-end work while the real backend takes form.</p>
+      <div class="foot">
+        <div class="links"><a href="https://github.com/RaheedFarooq/customendpoints_api">Source</a></div>
+        <span class="live">Tool</span>
+      </div>
+    </div>
+
+    <div class="cell xp reveal">
+      <div class="lbl">The Practice</div>
+      <div class="co"><h3>reisetopia</h3><span class="when">2023 — present</span></div>
+      <div class="role">TypeScript Fullstack Engineer</div>
+      <ul>
+        <li><b>Chargebee billing</b> — the full webhook lifecycle: renewals, failures, state sync</li>
+        <li><b>Rewards state machine</b> with idempotent third-party crediting</li>
+        <li>ETL pipelines into <b>BigQuery</b> · Datadog &amp; PostHog instrumentation</li>
+        <li>Rebuilt the <b>engineering hiring process</b> end to end</li>
+      </ul>
+      <div class="mat">TypeScript · Next.js · Node · MySQL · Salesforce · Datadog</div>
+    </div>
+
+    <div class="cell xp reveal">
+      <div class="lbl">Earlier rooms</div>
+      <div class="co"><h3>Filestage</h3><span class="when">2021 — 2023</span></div>
+      <div class="role">JS Fullstack Engineer</div>
+      <ul>
+        <li><b>Event automation</b> with user-configured triggers · WebSockets realtime</li>
+        <li>AngularJS → <b>React</b> migration within a monorepo</li>
+      </ul>
+      <div class="co" style="margin-top:22px"><h3>Creative Chaos</h3><span class="when">2019 — 2021</span></div>
+      <div class="role">Software Engineer ← Associate</div>
+      <ul>
+        <li>Charting platform · <b>GraphQL</b> on Apollo · PostgreSQL + <b>RedShift</b> lake</li>
+      </ul>
+    </div>
+
+    <div class="cell stack reveal">
+      <div class="lbl">Materials &amp; Instruments</div>
+      <div class="groups">
+        <div><h4>Languages &amp; frames</h4><ul><li class="hi">TypeScript</li><li class="hi">React · Next.js</li><li class="hi">Node.js</li><li>Express · Angular</li><li>GraphQL · PHP</li></ul></div>
+        <div><h4>Data</h4><ul><li class="hi">PostgreSQL</li><li>MySQL · MongoDB</li><li class="hi">BigQuery</li><li>RedShift</li></ul></div>
+        <div><h4>Ops &amp; observability</h4><ul><li class="hi">Datadog</li><li>Sentry · PostHog</li><li>Docker · AWS</li><li>GH Actions · Jenkins</li></ul></div>
+        <div><h4>Testing &amp; state</h4><ul><li class="hi">Jest · Playwright</li><li>Redux · Zustand</li><li>React Query</li><li>Storybook</li></ul></div>
+      </div>
+    </div>
+
+    <div class="cell meta reveal">
+      <div class="lbl">Particulars</div>
+      <div class="row"><span>Location</span><b>Berlin, Germany</b></div>
+      <div class="row"><span>Education</span><b>BSc Computer Science</b></div>
+      <div class="row"><span>English</span><b>Full professional</b></div>
+      <div class="row"><span>Urdu</span><b>Native</b></div>
+      <div class="row"><span>German</span><b>Basic (learning)</b></div>
+    </div>
+
+    <div class="cell contact reveal">
+      <div class="rsvp">Private enquiries welcome</div>
+      <h2>Commission the <em>next piece.</em></h2>
+      <div class="btns">
+        <a class="btn pri" href="mailto:raheedfarooq65@gmail.com">raheedfarooq65@gmail.com</a>
+        <a class="btn sec" href="https://github.com/RaheedFarooq">GitHub</a>
+        <a class="btn sec" href="https://de.linkedin.com/in/raheed-farooq">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

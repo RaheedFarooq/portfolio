@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup D · Bento Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Spline+Sans+Mono:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101014; --card:#17171D; --card-2:#1C1C24; --edge:#26262F; --edge-hi:#3A3A46;
+    --text:#E7E7EC; --dim:#8A8A96; --faint:#55555F;
+    --lime:#C8F04C; --coral:#FF6D5A; --sky:#6DB5FF; --violet:#B79DFF; --gold:#F0C04C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Bricolage Grotesque',sans-serif; font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:1140px;margin:0 auto;padding:56px 28px 90px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--lime);color:#101014}
+  .mono{font-family:'Spline Sans Mono',monospace}
+
+  /* header row */
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+  .top .id{display:flex;align-items:center;gap:14px}
+  .top .avatar{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--lime),#7CB82F);
+    display:grid;place-items:center;color:#15200A;font-weight:800;font-size:17px}
+  .top .id b{font-size:17px;font-weight:700;display:block;line-height:1.2}
+  .top .id span{font-size:13px;color:var(--dim)}
+  .top .cta{font-size:14px;font-weight:600;background:var(--text);color:#101014;
+    padding:11px 22px;border-radius:100px;transition:transform .2s,background .2s}
+  .top .cta:hover{transform:scale(1.04);background:var(--lime)}
+
+  /* bento grid */
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .cell{
+    background:var(--card);border:1px solid var(--edge);border-radius:22px;padding:26px;
+    transition:border-color .25s,transform .25s;position:relative;overflow:hidden;
+  }
+  .cell:hover{border-color:var(--edge-hi);transform:translateY(-2px)}
+  .lbl{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .lbl::before{content:'';width:6px;height:6px;border-radius:2px;background:var(--lime)}
+
+  /* hero cell */
+  .hero{grid-column:span 8;padding:36px;background:
+    radial-gradient(120% 160% at 85% -20%, rgba(200,240,76,.10), transparent 55%), var(--card)}
+  .hero h1{font-size:clamp(30px,4.4vw,50px);font-weight:750;line-height:1.04;letter-spacing:-.02em;
+    font-variation-settings:'opsz' 60}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero p{color:var(--dim);margin-top:16px;max-width:52ch;font-size:16.5px}
+  .hero p b{color:var(--text);font-weight:600}
+  .hero .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .chip{font-family:'Spline Sans Mono',monospace;font-size:12px;padding:6px 13px;
+    border:1px solid var(--edge-hi);border-radius:100px;color:var(--dim)}
+  .chip.hot{color:var(--lime);border-color:rgba(200,240,76,.35)}
+
+  /* status cell */
+  .status{grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between}
+  .status .big{font-size:34px;font-weight:750;line-height:1.1}
+  .status .big small{display:block;font-size:14px;font-weight:400;color:var(--dim);margin-top:6px}
+  .status .row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--edge);
+    font-size:13.5px;color:var(--dim)}
+  .status .row b{color:var(--text);font-weight:600}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);
+    margin-right:8px;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,240,76,.45)}60%{box-shadow:0 0 0 8px rgba(200,240,76,0)}}
+
+  /* project cells */
+  .proj{grid-column:span 4;min-height:250px;display:flex;flex-direction:column}
+  .proj h3{font-size:23px;font-weight:700;margin-bottom:8px}
+  .proj p{font-size:14px;color:var(--dim);flex:1}
+  .proj .foot{display:flex;gap:16px;margin-top:18px;font-family:'Spline Sans Mono',monospace;font-size:12.5px}
+  .proj .foot a{color:var(--dim);border-bottom:1px solid var(--edge-hi);padding-bottom:2px;transition:color .2s,border-color .2s}
+  .proj .glow{position:absolute;inset:auto -30% -55% -30%;height:70%;border-radius:50%;
+    filter:blur(46px);opacity:.14;transition:opacity .3s}
+  .proj:hover .glow{opacity:.26}
+  .proj.p1 .glow{background:var(--sky)} .proj.p1 .lbl::before{background:var(--sky)}
+  .proj.p1:hover .foot a{color:var(--sky);border-color:var(--sky)}
+  .proj.p2 .glow{background:var(--coral)} .proj.p2 .lbl::before{background:var(--coral)}
+  .proj.p2:hover .foot a{color:var(--coral);border-color:var(--coral)}
+  .proj.p3 .glow{background:var(--violet)} .proj.p3 .lbl::before{background:var(--violet)}
+  .proj.p3:hover .foot a{color:var(--violet);border-color:var(--violet)}
+
+  /* experience cells */
+  .xp{grid-column:span 6}
+  .xp .co{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .xp .co h3{font-size:21px;font-weight:700}
+  .xp .co .when{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--faint)}
+  .xp .role{font-size:13px;color:var(--dim);margin-bottom:14px}
+  .xp ul{list-style:none;font-size:14px;color:var(--dim)}
+  .xp li{padding:7px 0 7px 20px;border-top:1px solid var(--edge);position:relative}
+  .xp li::before{content:'→';position:absolute;left:0;color:var(--gold);font-weight:700}
+  .xp li b{color:var(--text);font-weight:600}
+  .xp.small{grid-column:span 6}
+  .xp .lbl::before{background:var(--gold)}
+
+  /* stack cell */
+  .stack{grid-column:span 8}
+  .stack .groups{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px}
+  .stack h4{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  .stack ul{list-style:none;font-size:14px;color:var(--dim)}
+  .stack li{padding:3px 0}
+  .stack li.hi{color:var(--text);font-weight:600}
+  .stack .lbl::before{background:var(--violet)}
+
+  /* meta / languages cell */
+  .meta{grid-column:span 4;display:flex;flex-direction:column;gap:0}
+  .meta .row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--edge);
+    font-size:14px;color:var(--dim)}
+  .meta .row:last-child{border-bottom:none}
+  .meta .row b{color:var(--text);font-weight:600}
+  .meta .lbl::before{background:var(--coral)}
+
+  /* contact cell */
+  .contact{grid-column:span 12;background:
+    radial-gradient(90% 200% at 50% 130%, rgba(200,240,76,.14), transparent 60%), var(--card);
+    text-align:center;padding:52px 26px}
+  .contact h2{font-size:clamp(26px,3.6vw,42px);font-weight:750;letter-spacing:-.015em}
+  .contact h2 em{font-style:normal;color:var(--lime)}
+  .contact p{color:var(--dim);margin:10px 0 26px}
+  .contact .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{font-size:14.5px;font-weight:600;padding:13px 26px;border-radius:100px;transition:transform .2s,background .2s,color .2s}
+  .btn.pri{background:var(--lime);color:#15200A}
+  .btn.pri:hover{transform:scale(1.05)}
+  .btn.sec{border:1px solid var(--edge-hi);color:var(--text)}
+  .btn.sec:hover{border-color:var(--lime);color:var(--lime)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  @media (max-width:900px){
+    .hero,.status,.proj,.xp,.stack,.meta{grid-column:span 12}
+    .stack .groups{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="id">
+      <div class="avatar">RF</div>
+      <div><b>Raheed Farooq</b><span>Full-Stack Engineer · Berlin</span></div>
+    </div>
+    <a class="cta" href="mailto:raheedfarooq65@gmail.com">Get in touch</a>
+  </div>
+
+  <div class="bento">
+
+    <div class="cell hero reveal">
+      <div class="lbl">About</div>
+      <h1>I build high-traffic <em>TypeScript</em> products, end to end.</h1>
+      <p>React/Next.js front-ends, Node.js services, and the data &amp; observability layers underneath. Drawn to the gnarly parts: <b>payments &amp; billing</b>, <b>event-driven systems</b>, <b>ETL pipelines</b> — and the monitoring that keeps them honest.</p>
+      <div class="chips">
+        <span class="chip hot">TypeScript</span><span class="chip">React / Next.js</span>
+        <span class="chip">Node.js</span><span class="chip">GraphQL</span><span class="chip hot">Datadog</span>
+      </div>
+    </div>
+
+    <div class="cell status reveal">
+      <div class="lbl">Status</div>
+      <div class="big"><span class="dot"></span>Shipping<small>Berlin · UTC+1 · since 2019</small></div>
+      <div>
+        <div class="row"><span>Current focus</span><b>Booking &amp; loyalty infra</b></div>
+        <div class="row"><span>Freelance network</span><b>Toptal-vetted</b></div>
+        <div class="row"><span>Open to</span><b>Interesting problems</b></div>
+      </div>
+    </div>
+
+    <div class="cell proj p1 reveal">
+      <div class="glow"></div>
+      <div class="lbl">Project · Live</div>
+      <h3>Voyager</h3>
+      <p>Interactive 3D globe of world history — who was alive, anywhere, at any moment across 5,000 years. Three.js, procedural WebGL, antique-atlas art direction.</p>
+      <div class="foot"><a href="https://voyager-rouge-nine.vercel.app">demo ↗</a><a href="https://github.com/RaheedFarooq/Voyager">source</a></div>
+    </div>
+
+    <div class="cell proj p2 reveal">
+      <div class="glow"></div>
+      <div class="lbl">Project · Open source</div>
+      <h3>Shark</h3>
+      <p>A brutally honest AI product evaluator for Claude Code — scored teardowns, competitive research, and strategic action plans. No cheerleading.</p>
+      <div class="foot"><a href="https://github.com/RaheedFarooq/shark">source ↗</a></div>
+    </div>
+
+    <div class="cell proj p3 reveal">
+      <div class="glow"></div>
+      <div class="lbl">Project · Tool</div>
+      <h3>CustomApis</h3>
+      <p>Schema-based mock API generator — describe the shape, get live fake endpoints. Node.js + Firestore behind, React + Tailwind in front.</p>
+      <div class="foot"><a href="https://github.com/RaheedFarooq/customendpoints_api">source ↗</a></div>
+    </div>
+
+    <div class="cell xp reveal">
+      <div class="lbl">Experience</div>
+      <div class="co"><h3>reisetopia</h3><span class="when">2023 — now</span></div>
+      <div class="role">TypeScript Fullstack Engineer</div>
+      <ul>
+        <li><b>Chargebee billing</b> — full webhook lifecycle: renewals, failures, state sync</li>
+        <li><b>Rewards state machine</b> with idempotent third-party crediting</li>
+        <li>ETL pipelines → <b>BigQuery</b>; Datadog + PostHog instrumentation</li>
+        <li>Rebuilt the <b>engineering hiring process</b> end to end</li>
+      </ul>
+    </div>
+
+    <div class="cell xp small reveal">
+      <div class="lbl">Before that</div>
+      <div class="co"><h3>Filestage</h3><span class="when">2021 — 23</span></div>
+      <div class="role">JS Fullstack Engineer</div>
+      <ul>
+        <li>Event automation with user-configured <b>triggers</b></li>
+        <li>AngularJS → <b>React migration</b> in a monorepo; WebSockets realtime</li>
+      </ul>
+      <div class="co" style="margin-top:20px"><h3>Creative Chaos</h3><span class="when">2019 — 21</span></div>
+      <div class="role">Software Engineer ← Associate</div>
+      <ul>
+        <li>Charting platform; <b>GraphQL</b> on Apollo; PostgreSQL + <b>RedShift</b> lake</li>
+      </ul>
+    </div>
+
+    <div class="cell stack reveal">
+      <div class="lbl">Toolkit</div>
+      <div class="groups">
+        <div><h4>Core</h4><ul><li class="hi">TypeScript</li><li class="hi">React / Next.js</li><li class="hi">Node.js</li><li>GraphQL · Express</li><li>Angular · PHP</li></ul></div>
+        <div><h4>Data</h4><ul><li class="hi">PostgreSQL</li><li>MySQL · MongoDB</li><li class="hi">BigQuery</li><li>RedShift</li></ul></div>
+        <div><h4>Ops</h4><ul><li class="hi">Datadog</li><li>Sentry · PostHog</li><li>Docker · AWS</li><li>GH Actions · Jenkins</li></ul></div>
+        <div><h4>Quality</h4><ul><li class="hi">Jest · Playwright</li><li>Redux · Zustand</li><li>React Query</li><li>Storybook</li></ul></div>
+      </div>
+    </div>
+
+    <div class="cell meta reveal">
+      <div class="lbl">Details</div>
+      <div class="row"><span>Location</span><b>Berlin, Germany</b></div>
+      <div class="row"><span>Education</span><b>BSc Computer Science</b></div>
+      <div class="row"><span>English</span><b>Full professional</b></div>
+      <div class="row"><span>Urdu</span><b>Native</b></div>
+      <div class="row"><span>German</span><b>Basic (learning)</b></div>
+    </div>
+
+    <div class="cell contact reveal">
+      <h2>Have a gnarly problem? <em>Let's talk.</em></h2>
+      <p>Payments, pipelines, event-driven chaos — the messier, the better.</p>
+      <div class="btns">
+        <a class="btn pri" href="mailto:raheedfarooq65@gmail.com">raheedfarooq65@gmail.com</a>
+        <a class="btn sec" href="https://github.com/RaheedFarooq">GitHub</a>
+        <a class="btn sec" href="https://de.linkedin.com/in/raheed-farooq">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

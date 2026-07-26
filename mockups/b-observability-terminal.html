@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup B · Observability Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D13; --panel:#0F131C; --panel-2:#131826; --line:#1E2533;
+    --text:#C6CFDE; --dim:#6B7689; --faint:#3A4356;
+    --green:#4AE383; --amber:#E3B341; --blue:#79B8FF; --red:#F97583; --purple:#B392F0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'JetBrains Mono',monospace; font-size:14.5px; line-height:1.7;
+    background-image:
+      linear-gradient(rgba(121,184,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(121,184,255,.025) 1px, transparent 1px);
+    background-size:44px 44px;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+  a{color:var(--blue);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+  a:hover{border-color:var(--blue)}
+  ::selection{background:var(--green);color:var(--bg)}
+
+  /* ——— status bar ——— */
+  .statusbar{
+    position:sticky;top:0;z-index:50;background:rgba(10,13,19,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);font-size:12.5px;
+  }
+  .statusbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:10px 28px}
+  .statusbar .left{color:var(--dim)}
+  .statusbar .left b{color:var(--green);font-weight:600}
+  .statusbar .right{display:flex;gap:20px;color:var(--dim)}
+  .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);
+    margin-right:7px;animation:pulse 2.2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,227,131,.5)}55%{box-shadow:0 0 0 7px rgba(74,227,131,0)}}
+
+  /* ——— hero prompt ——— */
+  .hero{padding:96px 0 60px}
+  .prompt-line{color:var(--dim);font-size:14px;margin-bottom:14px}
+  .prompt-line .u{color:var(--green)}.prompt-line .p{color:var(--blue)}
+  h1{
+    font-weight:700;font-size:clamp(34px,6vw,62px);letter-spacing:-.02em;line-height:1.08;
+    color:#E8EDF6;margin-bottom:6px;
+  }
+  h1 .cursor{display:inline-block;width:.55em;height:1em;background:var(--green);
+    vertical-align:-.12em;margin-left:6px;animation:blink 1.1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .role{font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:clamp(17px,2.2vw,21px);
+    color:var(--dim);margin:14px 0 26px;max-width:58ch}
+  .role b{color:var(--text);font-weight:500}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px}
+  .tag{font-size:12px;padding:5px 12px;border:1px solid var(--line);border-radius:100px;color:var(--dim)}
+  .tag.hot{border-color:rgba(74,227,131,.4);color:var(--green)}
+
+  /* ——— section label ——— */
+  section{padding:54px 0}
+  .sec{color:var(--faint);font-size:12.5px;letter-spacing:.14em;margin-bottom:26px}
+  .sec b{color:var(--amber);font-weight:600}
+  .sec::before{content:'── '}
+  .sec::after{content:' ' attr(data-fill);color:var(--line)}
+
+  /* ——— trace waterfall (experience) ——— */
+  .trace{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+  .trace-head{display:grid;grid-template-columns:1fr 340px;gap:16px;padding:12px 20px;
+    border-bottom:1px solid var(--line);font-size:11.5px;color:var(--faint);letter-spacing:.1em}
+  .span{display:grid;grid-template-columns:1fr 340px;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);
+    transition:background .25s}
+  .span:last-child{border-bottom:none}
+  .span:hover{background:var(--panel-2)}
+  .span-info .svc{font-size:15.5px;color:#E8EDF6;font-weight:600}
+  .span-info .svc small{color:var(--dim);font-weight:400;margin-left:10px;font-size:12.5px}
+  .span-info .op{font-family:'IBM Plex Sans',sans-serif;color:var(--dim);font-size:13.5px;margin-top:8px;max-width:56ch;font-weight:300;line-height:1.65}
+  .span-info .op b{color:var(--text);font-weight:500}
+  .span-info .kv{margin-top:10px;font-size:11.5px;color:var(--faint)}
+  .span-info .kv i{font-style:normal;color:var(--purple)}
+  .span-viz{padding-top:4px}
+  .bar-rail{height:10px;background:var(--panel-2);border-radius:5px;position:relative;overflow:hidden}
+  .bar{position:absolute;top:0;bottom:0;border-radius:5px;transform-origin:left;animation:grow 1s cubic-bezier(.2,.7,.2,1) both}
+  .span:nth-child(2) .bar{animation-delay:.1s}.span:nth-child(3) .bar{animation-delay:.25s}
+  .span:nth-child(4) .bar{animation-delay:.4s}.span:nth-child(5) .bar{animation-delay:.55s}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .bar.g{background:linear-gradient(90deg,#2EA063,var(--green))}
+  .bar.b{background:linear-gradient(90deg,#3D6FB4,var(--blue))}
+  .bar.p{background:linear-gradient(90deg,#7E5FC4,var(--purple))}
+  .bar.a{background:linear-gradient(90deg,#B4882B,var(--amber))}
+  .span-viz .dur{font-size:11.5px;color:var(--faint);margin-top:7px;display:flex;justify-content:space-between}
+  .span-viz .dur .ok{color:var(--green)}
+
+  /* ——— services (projects) ——— */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .svc-card{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:22px;
+    transition:transform .25s ease,border-color .25s ease;position:relative}
+  .svc-card:hover{transform:translateY(-3px);border-color:var(--faint)}
+  .svc-card .status{display:flex;align-items:center;font-size:11px;letter-spacing:.12em;color:var(--green);margin-bottom:14px}
+  .svc-card .status.dev{color:var(--amber)}
+  .svc-card .status .pulse{width:7px;height:7px}
+  .svc-card .status.dev .pulse{background:var(--amber);animation:none}
+  .svc-card h3{color:#E8EDF6;font-size:19px;font-weight:700;margin-bottom:8px}
+  .svc-card p{font-family:'IBM Plex Sans',sans-serif;font-weight:300;font-size:13.5px;color:var(--dim);line-height:1.6;min-height:86px}
+  .svc-card .meta{font-size:11px;color:var(--faint);border-top:1px dashed var(--line);padding-top:12px;margin-top:14px;line-height:2}
+  .svc-card .meta .k{color:var(--faint)}.svc-card .meta .v{color:var(--text)}
+  .svc-card .links{margin-top:12px;font-size:12.5px;display:flex;gap:16px}
+
+  /* ——— stacks (skills as ls output) ——— */
+  .lsgrid{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:22px 26px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:6px 22px;font-size:13.5px}
+  .lsgrid .dir{color:var(--blue);font-weight:600;grid-column:1/-1;margin-top:14px}
+  .lsgrid .dir:first-child{margin-top:0}
+  .lsgrid .f{color:var(--dim)}
+  .lsgrid .f.x{color:var(--green)}
+
+  /* ——— logs footer ——— */
+  footer{padding:60px 0 80px;border-top:1px solid var(--line);margin-top:30px}
+  .log{font-size:13px;line-height:2.1}
+  .log .t{color:var(--faint)}
+  .log .lvl-info{color:var(--blue)}.log .lvl-ok{color:var(--green)}.log .lvl-warn{color:var(--amber)}
+  .log a{color:var(--text);border-bottom:1px dotted var(--dim)}
+  .log a:hover{color:var(--green);border-color:var(--green)}
+  .big-cta{margin:34px 0 0;font-size:clamp(20px,3vw,30px);font-weight:700;color:#E8EDF6}
+  .big-cta a{color:var(--green);border-bottom:2px solid rgba(74,227,131,.35)}
+  .big-cta a:hover{border-color:var(--green)}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media (max-width:840px){
+    .trace-head,.span{grid-template-columns:1fr}
+    .trace-head{display:none}
+    .services{grid-template-columns:1fr}
+    .lsgrid{grid-template-columns:1fr 1fr}
+    .statusbar .right{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="statusbar">
+  <div class="wrap">
+    <span class="left"><span class="pulse"></span><b>raheed@berlin</b> ~ status: shipping</span>
+    <span class="right"><span>uptime: 7y+</span><span>err_rate: honest</span><span>tz: UTC+1</span></span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="prompt-line"><span class="u">raheed@berlin</span>:<span class="p">~</span>$ whoami</div>
+    <h1>Raheed Farooq<span class="cursor"></span></h1>
+    <p class="role">Full-stack engineer building <b>high-traffic TypeScript products</b> end to end — React/Next.js front-ends, Node.js services, and the <b>data &amp; observability layers</b> that keep them honest. Payments, event-driven systems, pipelines: the parts most people avoid.</p>
+    <div class="hero-tags">
+      <span class="tag hot">TypeScript</span><span class="tag">React / Next.js</span><span class="tag">Node.js</span>
+      <span class="tag">GraphQL</span><span class="tag">BigQuery</span><span class="tag hot">Datadog</span><span class="tag">AWS</span>
+    </div>
+  </section>
+
+  <section id="trace">
+    <div class="sec" data-fill="────────────────────────────────">trace: <b>career.waterfall</b></div>
+    <div class="trace">
+      <div class="trace-head"><span>SERVICE / OPERATION</span><span>DURATION · 2019 ─────────── 2026</span></div>
+
+      <div class="span">
+        <div class="span-info">
+          <div class="svc">reisetopia <small>TypeScript Fullstack Engineer</small></div>
+          <div class="op">Owns <b>Chargebee billing</b> (full webhook lifecycle), a <b>rewards state machine</b> with idempotent crediting, ETL pipelines into BigQuery, Datadog + PostHog instrumentation, Salesforce sync — and redesigned the hiring process end to end.</div>
+          <div class="kv">stack=<i>ts,next,node,mysql,salesforce,datadog</i></div>
+        </div>
+        <div class="span-viz">
+          <div class="bar-rail"><div class="bar g" style="left:58%;right:0"></div></div>
+          <div class="dur"><span>2023 → now</span><span class="ok">● active</span></div>
+        </div>
+      </div>
+
+      <div class="span">
+        <div class="span-info">
+          <div class="svc">Filestage <small>JS Fullstack Engineer</small></div>
+          <div class="op"><b>Event automation</b> with user-configured triggers; AngularJS→React migration in a monorepo; real-time features on <b>WebSockets</b>; stabilised a flaky Jest/Playwright suite until CI meant something.</div>
+          <div class="kv">stack=<i>ts,react,node,websockets,jest,playwright</i></div>
+        </div>
+        <div class="span-viz">
+          <div class="bar-rail"><div class="bar b" style="left:29%;right:42%"></div></div>
+          <div class="dur"><span>2021 → 2023</span><span>1.7y</span></div>
+        </div>
+      </div>
+
+      <div class="span">
+        <div class="span-info">
+          <div class="svc">Creative Chaos <small>Software Engineer</small></div>
+          <div class="op">Data-intensive <b>charting platform</b>; GraphQL on Apollo Server/Client; PostgreSQL with an <b>AWS RedShift</b> data lake for analytical reporting.</div>
+          <div class="kv">stack=<i>js,react,graphql,postgres,redshift</i></div>
+        </div>
+        <div class="span-viz">
+          <div class="bar-rail"><div class="bar p" style="left:15%;right:57%"></div></div>
+          <div class="dur"><span>2020 → 2021</span><span>1y</span></div>
+        </div>
+      </div>
+
+      <div class="span">
+        <div class="span-info">
+          <div class="svc">Creative Chaos <small>Associate Software Engineer</small></div>
+          <div class="op">Backend APIs on Sails.js/Express; serverless workflows on <b>AWS Lambda</b>; automated mobile translation-file generation.</div>
+          <div class="kv">stack=<i>node,sails,react,postgres,lambda</i></div>
+        </div>
+        <div class="span-viz">
+          <div class="bar-rail"><div class="bar a" style="left:1%;right:71%"></div></div>
+          <div class="dur"><span>2019 → 2020</span><span>10mo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="sec" data-fill="────────────────────────────────">services: <b>side_projects</b></div>
+    <div class="services">
+      <div class="svc-card">
+        <div class="status"><span class="pulse"></span>LIVE · voyager-rouge-nine.vercel.app</div>
+        <h3>voyager</h3>
+        <p>Interactive 3D globe of world history — who was alive, anywhere, at any moment across 5,000 years. Antique-atlas art direction meets procedural WebGL.</p>
+        <div class="meta">
+          <div><span class="k">runtime  :</span> <span class="v">react · ts · three.js (r3f)</span></div>
+          <div><span class="k">state    :</span> <span class="v">zustand</span></div>
+        </div>
+        <div class="links"><a href="https://voyager-rouge-nine.vercel.app">demo ↗</a><a href="https://github.com/RaheedFarooq/Voyager">src</a></div>
+      </div>
+      <div class="svc-card">
+        <div class="status"><span class="pulse"></span>LIVE · open source</div>
+        <h3>shark</h3>
+        <p>A brutally honest AI product evaluator for Claude Code — scored teardowns, competitive research, strategic action plans. No cheerleading.</p>
+        <div class="meta">
+          <div><span class="k">runtime  :</span> <span class="v">claude code skill</span></div>
+          <div><span class="k">modes    :</span> <span class="v">tank · grill · mentor</span></div>
+        </div>
+        <div class="links"><a href="https://github.com/RaheedFarooq/shark">src</a></div>
+      </div>
+      <div class="svc-card">
+        <div class="status dev"><span class="pulse"></span>STABLE</div>
+        <h3>custom-apis</h3>
+        <p>Schema-based mock API generator — describe the shape, get live fake endpoints. Node.js + Firestore backend, React + Tailwind front.</p>
+        <div class="meta">
+          <div><span class="k">runtime  :</span> <span class="v">node · firestore · react</span></div>
+          <div><span class="k">purpose  :</span> <span class="v">unblock front-end work</span></div>
+        </div>
+        <div class="links"><a href="https://github.com/RaheedFarooq/customendpoints_api">src</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stacks">
+    <div class="sec" data-fill="────────────────────────────────">$ ls <b>~/stacks</b> -R</div>
+    <div class="lsgrid">
+      <span class="dir">languages_frameworks/</span>
+      <span class="f x">typescript</span><span class="f x">react</span><span class="f x">next.js</span><span class="f x">node.js</span>
+      <span class="f">express</span><span class="f">angular</span><span class="f">graphql</span><span class="f">php</span>
+      <span class="dir">data/</span>
+      <span class="f x">postgresql</span><span class="f">mysql</span><span class="f">mongodb</span><span class="f x">bigquery</span>
+      <span class="f">redshift</span>
+      <span class="dir">ops_observability/</span>
+      <span class="f x">datadog</span><span class="f">sentry</span><span class="f">posthog</span><span class="f">docker</span>
+      <span class="f">aws</span><span class="f">gh-actions</span><span class="f">jenkins</span>
+      <span class="dir">testing_state/</span>
+      <span class="f x">jest</span><span class="f x">playwright</span><span class="f">redux</span><span class="f">zustand</span>
+      <span class="f">react-query</span><span class="f">storybook</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="log">
+      <div><span class="t">2026-07-21T09:00:00Z</span> <span class="lvl-info">INFO</span>  location=berlin remote=friendly languages=[en, ur, de(basic)]</div>
+      <div><span class="t">2026-07-21T09:00:01Z</span> <span class="lvl-ok">OK</span>    github=<a href="https://github.com/RaheedFarooq">github.com/RaheedFarooq</a> linkedin=<a href="https://de.linkedin.com/in/raheed-farooq">in/raheed-farooq</a></div>
+      <div><span class="t">2026-07-21T09:00:02Z</span> <span class="lvl-warn">HINT</span>  best_way_to_reach=email response_time=fast</div>
+    </div>
+    <div class="big-cta">$ mail <a href="mailto:raheedfarooq65@gmail.com">raheedfarooq65@gmail.com</a><span class="cursor" style="display:inline-block;width:.5em;height:.9em;background:var(--green);vertical-align:-.08em;margin-left:8px;animation:blink 1.1s step-end infinite"></span></div>
+  </footer>
+
+</main>
+</body>
+</html>

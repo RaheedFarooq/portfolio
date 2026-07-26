@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup E · Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#10305E; --paper-hi:#153A70; --ink:#DCE9F7; --ink-dim:#8FB0D4; --ink-faint:#4C6E9C;
+    --wire:#B8D4F0; --cyan:#7FE3F0; --amber:#FFC96B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Mono',monospace; font-size:14px; line-height:1.7;
+    background-image:
+      linear-gradient(rgba(184,212,240,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,212,240,.07) 1px, transparent 1px),
+      linear-gradient(rgba(184,212,240,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,212,240,.045) 1px, transparent 1px);
+    background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  }
+  .sheet{max-width:1120px;margin:34px auto 60px;border:2px solid var(--wire);position:relative;
+    box-shadow:0 0 0 1px rgba(184,212,240,.25), 0 30px 80px rgba(0,0,0,.4)}
+  .sheet::before,.sheet::after{content:'';position:absolute;width:18px;height:18px;border:1.5px solid var(--cyan);z-index:5}
+  .sheet::before{top:-9px;left:-9px;border-right:none;border-bottom:none}
+  .sheet::after{bottom:-9px;right:-9px;border-left:none;border-top:none}
+  .inner{padding:0 46px}
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px dashed rgba(127,227,240,.5)}
+  a:hover{border-bottom-style:solid}
+  ::selection{background:var(--cyan);color:var(--paper)}
+  .cond{font-family:'Barlow Condensed',sans-serif}
+
+  /* title block — like a real drawing sheet */
+  .titleblock{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;border-bottom:2px solid var(--wire)}
+  .tb-cell{padding:14px 18px;border-right:1px solid var(--ink-faint)}
+  .tb-cell:last-child{border-right:none}
+  .tb-cell .k{font-size:9.5px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-bottom:3px}
+  .tb-cell .v{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-transform:uppercase}
+  .tb-cell .v.c{color:var(--cyan)}
+
+  /* hero */
+  .hero{padding:74px 0 60px;position:relative}
+  .fig-note{font-size:11px;color:var(--ink-faint);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .fig-note b{color:var(--amber);font-weight:500}
+  h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(54px,9vw,110px);line-height:.92;letter-spacing:.015em}
+  h1 .sub{display:block;font-weight:400;font-size:clamp(20px,3vw,32px);letter-spacing:.24em;
+    color:var(--ink-dim);margin-top:14px}
+  .hero-dim{display:flex;align-items:center;gap:14px;margin-top:34px;color:var(--ink-faint);font-size:11px}
+  .hero-dim .dline{flex:1;height:1px;background:var(--ink-faint);position:relative}
+  .hero-dim .dline::before,.hero-dim .dline::after{content:'';position:absolute;top:-4px;width:1px;height:9px;background:var(--ink-faint)}
+  .hero-dim .dline::before{left:0}.hero-dim .dline::after{right:0}
+  .hero-spec{margin-top:26px;max-width:64ch;color:var(--ink-dim);font-size:14.5px}
+  .hero-spec b{color:var(--ink);font-weight:600}
+  .hero-spec .hl{color:var(--cyan)}
+
+  /* section header */
+  section{padding:52px 0;border-top:1px solid var(--ink-faint)}
+  .fig{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .fig .no{font-size:12px;color:var(--amber);letter-spacing:.14em}
+  .fig h2{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:30px;
+    letter-spacing:.14em;text-transform:uppercase}
+  .fig .tail{flex:1;border-bottom:1px dashed var(--ink-faint);transform:translateY(-8px)}
+
+  /* assembly (experience) — schematic stack */
+  .assembly{position:relative;padding-left:26px}
+  .assembly::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;
+    background:repeating-linear-gradient(var(--ink-faint) 0 6px, transparent 6px 12px)}
+  .part{position:relative;margin-bottom:34px;border:1px solid var(--ink-faint);background:rgba(21,58,112,.55);
+    padding:22px 26px;transition:border-color .25s,background .25s}
+  .part:hover{border-color:var(--cyan);background:var(--paper-hi)}
+  .part::before{content:'';position:absolute;left:-21px;top:28px;width:20px;height:1px;background:var(--ink-faint)}
+  .part::after{content:'';position:absolute;left:-25px;top:24px;width:9px;height:9px;border-radius:50%;
+    border:1.5px solid var(--cyan);background:var(--paper)}
+  .part-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+  .part-head h3{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:25px;
+    letter-spacing:.1em;text-transform:uppercase}
+  .part-head h3 small{font-size:15px;color:var(--ink-dim);letter-spacing:.08em;margin-left:12px}
+  .part-head .ref{font-size:11px;color:var(--amber);letter-spacing:.12em}
+  .part p{color:var(--ink-dim);font-size:13.5px;max-width:70ch}
+  .part p b{color:var(--ink);font-weight:600}
+  .part .bom{margin-top:12px;font-size:11px;color:var(--ink-faint);letter-spacing:.06em}
+  .part .bom i{font-style:normal;color:var(--cyan)}
+
+  /* details (projects) — detail views */
+  .details{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+  .detail{border:1px solid var(--ink-faint);padding:24px;position:relative;
+    transition:border-color .25s,transform .25s;background:rgba(21,58,112,.35)}
+  .detail:hover{border-color:var(--cyan);transform:translateY(-3px)}
+  .detail .circle{width:64px;height:64px;border:1.5px solid var(--cyan);border-radius:50%;
+    display:grid;place-items:center;margin-bottom:18px;font-family:'Barlow Condensed',sans-serif;
+    font-size:22px;font-weight:600;color:var(--cyan);position:relative}
+  .detail .circle::after{content:'';position:absolute;inset:-7px;border:1px dashed rgba(127,227,240,.35);border-radius:50%}
+  .detail h3{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:24px;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  .detail p{font-size:13px;color:var(--ink-dim);min-height:110px}
+  .detail .spec-row{border-top:1px dashed var(--ink-faint);margin-top:14px;padding-top:10px;
+    font-size:10.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+  .detail .links{margin-top:12px;font-size:12px;display:flex;gap:18px}
+
+  /* materials (skills) */
+  .materials{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink-faint)}
+  .mat{padding:20px 24px;border-bottom:1px solid var(--ink-faint);display:grid;
+    grid-template-columns:150px 1fr;gap:18px;align-items:baseline}
+  .mat:nth-child(odd){border-right:1px solid var(--ink-faint)}
+  .mat:nth-last-child(-n+1){border-bottom:none}
+  .mat:nth-last-child(2){border-bottom:none}
+  .mat .g{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+  .mat .items{font-size:13px;color:var(--ink-dim);line-height:1.9}
+  .mat .items b{color:var(--ink);font-weight:600}
+
+  /* footer titleblock */
+  .foot{border-top:2px solid var(--wire);display:grid;grid-template-columns:1.6fr 1fr 1fr}
+  .foot .cell{padding:22px 24px;border-right:1px solid var(--ink-faint)}
+  .foot .cell:last-child{border-right:none}
+  .foot .k{font-size:9.5px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;display:block;margin-bottom:6px}
+  .foot .big{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:24px;
+    letter-spacing:.08em;text-transform:uppercase}
+  .foot a{font-size:13px}
+  .stamp{position:absolute;right:40px;bottom:110px;width:120px;height:120px;border:2px solid var(--amber);
+    border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--amber);
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;transform:rotate(-14deg);
+    opacity:.85;pointer-events:none}
+  .stamp b{font-size:13px;display:block;letter-spacing:.1em}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
+  @media (max-width:880px){
+    .inner{padding:0 22px}
+    .titleblock,.foot{grid-template-columns:1fr 1fr}
+    .details{grid-template-columns:1fr}
+    .materials{grid-template-columns:1fr}
+    .mat:nth-child(odd){border-right:none}
+    .mat{grid-template-columns:1fr;gap:6px}
+    .stamp{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="titleblock">
+    <div class="tb-cell"><span class="k">Title</span><span class="v">Raheed Farooq — Full-Stack Engineer</span></div>
+    <div class="tb-cell"><span class="k">Location</span><span class="v">Berlin, DE</span></div>
+    <div class="tb-cell"><span class="k">Rev</span><span class="v c">2026.07</span></div>
+    <div class="tb-cell"><span class="k">Scale</span><span class="v">1 : 1</span></div>
+  </div>
+
+  <div class="inner">
+
+    <header class="hero">
+      <div class="fig-note">FIG. 0 — <b>GENERAL ARRANGEMENT</b> · DO NOT SCALE FROM THIS DRAWING</div>
+      <h1>Raheed Farooq
+        <span class="sub">Full-Stack Software Engineer</span>
+      </h1>
+      <div class="hero-dim"><span>2019</span><div class="dline"></div><span>PRESENT — 7+ YRS OF SERVICE</span></div>
+      <p class="hero-spec">Designs and builds <b>high-traffic TypeScript systems</b> end to end: React/Next.js elevations, Node.js structure, data foundations. Load-bearing specialties: <span class="hl">payments &amp; billing</span>, <span class="hl">event-driven reward flows</span>, <span class="hl">ETL pipelines</span>, and the <span class="hl">observability</span> that certifies the whole assembly.</p>
+      <div class="stamp"><div><b>TOPTAL</b>vetted<br>engineer</div></div>
+    </header>
+
+    <section>
+      <div class="fig"><span class="no">FIG. 1</span><h2>Assembly History</h2><div class="tail"></div></div>
+      <div class="assembly">
+        <div class="part reveal">
+          <div class="part-head"><h3>reisetopia<small>TypeScript Fullstack Engineer</small></h3><span class="ref">REF 2023—NOW</span></div>
+          <p>Load-bearing member. <b>Chargebee billing</b> across the full webhook lifecycle; a <b>rewards state machine</b> with idempotent third-party crediting; ETL into <b>BigQuery</b>; Datadog &amp; PostHog instrumentation throughout; Salesforce sync via jsforce. Also redesigned the <b>engineering hiring process</b> end to end.</p>
+          <div class="bom">B.O.M. → <i>typescript</i> · <i>next.js</i> · <i>node</i> · <i>mysql</i> · <i>salesforce</i> · <i>datadog</i></div>
+        </div>
+        <div class="part reveal">
+          <div class="part-head"><h3>Filestage<small>JS Fullstack Engineer</small></h3><span class="ref">REF 2021—23</span></div>
+          <p><b>Event automation</b> with user-configured triggers; AngularJS→<b>React</b> migration inside a monorepo; realtime via WebSockets; flaky Jest/Playwright suite stabilised to spec.</p>
+          <div class="bom">B.O.M. → <i>typescript</i> · <i>react</i> · <i>websockets</i> · <i>jest</i> · <i>playwright</i></div>
+        </div>
+        <div class="part reveal">
+          <div class="part-head"><h3>Creative Chaos<small>Software Engineer ← Associate</small></h3><span class="ref">REF 2019—21</span></div>
+          <p>Data-intensive <b>charting platform</b>; GraphQL on Apollo Server/Client; PostgreSQL with an <b>AWS RedShift</b> data lake; serverless workflows on Lambda.</p>
+          <div class="bom">B.O.M. → <i>javascript</i> · <i>graphql</i> · <i>postgresql</i> · <i>redshift</i> · <i>lambda</i></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="fig"><span class="no">FIG. 2</span><h2>Detail Views — Independent Works</h2><div class="tail"></div></div>
+      <div class="details">
+        <div class="detail reveal">
+          <div class="circle">D1</div>
+          <h3>Voyager</h3>
+          <p>Interactive 3D globe of world history — who was alive, anywhere on Earth, at any moment across 5,000 years. Procedural WebGL landmark geometry, antique-atlas art direction.</p>
+          <div class="spec-row">React · TS · Three.js / R3F · Zustand</div>
+          <div class="links"><a href="https://voyager-rouge-nine.vercel.app">LIVE DEMO</a><a href="https://github.com/RaheedFarooq/Voyager">SOURCE</a></div>
+        </div>
+        <div class="detail reveal">
+          <div class="circle">D2</div>
+          <h3>Shark</h3>
+          <p>Brutally honest AI product evaluator for Claude Code — scored teardowns, competitive research, strategic action plans. Calibrated for truth, not comfort.</p>
+          <div class="spec-row">Claude Code skill · open source</div>
+          <div class="links"><a href="https://github.com/RaheedFarooq/shark">SOURCE</a></div>
+        </div>
+        <div class="detail reveal">
+          <div class="circle">D3</div>
+          <h3>CustomApis</h3>
+          <p>Schema-based mock API generator — specify the shape, receive live fake endpoints. Unblocks front-end work while the real backend is under construction.</p>
+          <div class="spec-row">Node · Firestore · React · Tailwind</div>
+          <div class="links"><a href="https://github.com/RaheedFarooq/customendpoints_api">SOURCE</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="fig"><span class="no">FIG. 3</span><h2>Schedule of Materials</h2><div class="tail"></div></div>
+      <div class="materials">
+        <div class="mat reveal"><span class="g">Languages / Frames</span><span class="items"><b>TypeScript</b> · JavaScript · <b>React</b> · <b>Next.js</b> · <b>Node.js</b> · Express · Angular · GraphQL · PHP</span></div>
+        <div class="mat reveal"><span class="g">Data</span><span class="items"><b>PostgreSQL</b> · MySQL · MongoDB · <b>BigQuery</b> · AWS RedShift</span></div>
+        <div class="mat reveal"><span class="g">Ops / Observability</span><span class="items"><b>Datadog</b> · Sentry · PostHog · Docker · AWS · GitHub Actions · Jenkins</span></div>
+        <div class="mat reveal"><span class="g">Testing / State</span><span class="items"><b>Jest</b> · <b>Playwright</b> · Redux · Zustand · React Query · Storybook</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    <div class="cell">
+      <span class="k">Correspondence</span>
+      <div class="big"><a href="mailto:raheedfarooq65@gmail.com" style="border:none">raheedfarooq65@gmail.com</a></div>
+    </div>
+    <div class="cell">
+      <span class="k">Repositories</span>
+      <a href="https://github.com/RaheedFarooq">github.com/RaheedFarooq</a>
+    </div>
+    <div class="cell">
+      <span class="k">Professional record</span>
+      <a href="https://de.linkedin.com/in/raheed-farooq">in/raheed-farooq</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

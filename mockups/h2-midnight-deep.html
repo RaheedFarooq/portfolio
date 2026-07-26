@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup H2 · Midnight Edition, Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Spline+Sans+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#141210; --void-2:#1A1715; --ink:#EDE6DC; --ink-soft:#9C948A; --faint:#5F5952;
+    --brass:#C3A572; --brass-hi:#E2C892; --brass-dark:#8C7347;
+    --rule:#2F2A25; --rule-hi:#4D453D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void); color:var(--ink);
+    font-family:'Newsreader',serif; font-size:17px; line-height:1.65; font-weight:340;
+    background-image:
+      radial-gradient(ellipse at 15% 6%, rgba(195,165,114,.055), transparent 55%),
+      radial-gradient(ellipse at 88% 96%, rgba(195,165,114,.04), transparent 50%);
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+  a{color:inherit}
+  ::selection{background:var(--brass);color:var(--void)}
+  .mono{font-family:'Spline Sans Mono',monospace}
+
+  /* masthead */
+  header{padding-top:34px}
+  .topline{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+    border-bottom:1px solid var(--rule-hi);padding-bottom:10px}
+  .topline .dot{color:var(--brass)}
+  h1.masthead{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(56px,10.5vw,124px);
+    line-height:.95;letter-spacing:-.015em;text-align:center;padding:38px 0 26px;
+    animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+  h1 .amp{color:var(--brass-hi);font-style:italic;font-weight:400}
+  .deck{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;
+    border-top:3px double var(--rule-hi);border-bottom:3px double var(--rule-hi);
+    padding:12px 0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .deck > :first-child{text-align:right}
+  .deck .seal{font-family:'Fraunces',serif;font-weight:700;color:var(--brass);
+    border:1.5px solid var(--brass);border-radius:50%;width:54px;height:54px;
+    display:grid;place-items:center;font-size:15px;transform:rotate(-8deg)}
+
+  /* lede */
+  .lede{display:grid;grid-template-columns:1.6fr 1fr;gap:56px;padding:56px 0 10px}
+  .lede-main p{font-size:clamp(21px,2.5vw,27px);line-height:1.5;
+    animation:rise .8s .15s cubic-bezier(.2,.7,.2,1) both}
+  .lede-main p::first-letter{font-family:'Fraunces',serif;font-weight:900;color:var(--brass-hi);
+    font-size:3.4em;float:left;line-height:.8;padding:6px 10px 0 0}
+  .lede-main em{font-style:italic;color:var(--brass-hi)}
+  .lede-aside{border-left:1px solid var(--rule-hi);padding-left:28px;font-size:15px;
+    color:var(--ink-soft);animation:rise .8s .3s cubic-bezier(.2,.7,.2,1) both}
+  .lede-aside h3{font-family:'Fraunces',serif;font-size:13px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+  .lede-aside ul{list-style:none}
+  .lede-aside li{padding:7px 0;border-bottom:1px dotted var(--rule)}
+  .lede-aside li b{font-weight:500;color:var(--ink)}
+
+  /* almanac numbers */
+  .almanac{display:grid;grid-template-columns:repeat(6,1fr);border-top:3px double var(--rule-hi);
+    border-bottom:3px double var(--rule-hi);margin-top:40px}
+  .alm{padding:18px 12px;text-align:center;border-right:1px dotted var(--rule-hi)}
+  .alm:last-child{border-right:none}
+  .alm b{font-family:'Fraunces',serif;font-weight:800;font-size:26px;color:var(--brass-hi);display:block}
+  .alm span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+
+  /* sections */
+  section{padding:58px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px}
+  .sec-head .no{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--brass)}
+  .sec-head h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(28px,3.6vw,40px)}
+  .sec-head .rule{flex:1;height:1px;background:var(--rule-hi);transform:translateY(-6px)}
+  .sec-head .kick{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+
+  /* case files — newspaper articles, 2-col */
+  .cases{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule-hi)}
+  .case{padding:32px 34px;border-bottom:1px solid var(--rule-hi)}
+  .case:nth-child(odd){border-right:1px solid var(--rule-hi)}
+  .case:nth-last-child(-n+2){border-bottom:none}
+  .case .cat{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:10px}
+  .case h3{font-family:'Fraunces',serif;font-weight:700;font-size:25px;line-height:1.15;margin-bottom:6px}
+  .case .standfirst{font-style:italic;color:var(--ink-soft);font-size:15px;margin-bottom:14px}
+  .case p{font-size:15px;color:var(--ink-soft)}
+  .case p b{color:var(--ink);font-weight:500}
+  .case .outcome{margin-top:16px;padding:12px 16px;border-left:2px solid var(--brass);
+    background:rgba(195,165,114,.05);font-size:14px;color:var(--ink-soft)}
+  .case .outcome b{color:var(--brass-hi);font-weight:500}
+
+  /* plates — deep with artifacts */
+  .plate-deep{border:1px solid var(--rule-hi);margin-bottom:26px;display:grid;grid-template-columns:1fr 1.05fr}
+  .plate-copy{padding:36px}
+  .plate-copy .roman{font-family:'Fraunces',serif;font-style:italic;color:var(--brass);font-size:14px}
+  .plate-copy h3{font-family:'Fraunces',serif;font-weight:750;font-size:clamp(28px,3.4vw,40px);margin:8px 0 12px}
+  .plate-copy p{color:var(--ink-soft);font-size:15.5px}
+  .plate-copy p b{color:var(--ink);font-weight:500}
+  .plate-copy ul{list-style:none;margin-top:16px;font-size:14px;color:var(--ink-soft)}
+  .plate-copy li{padding:7px 0;border-top:1px dotted var(--rule)}
+  .plate-copy li b{color:var(--ink);font-weight:500}
+  .plate-copy li::before{content:'— ';color:var(--brass)}
+  .plate-copy .links{margin-top:22px;display:flex;gap:26px}
+  .plate-copy .links a{font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;
+    color:var(--brass-hi);border-bottom:1px solid transparent;transition:border-color .25s;padding-bottom:2px}
+  .plate-copy .links a:hover{border-color:var(--brass)}
+  .plate-fig{position:relative;border-left:1px solid var(--rule-hi);background:var(--void-2);min-height:400px}
+  .plate-fig iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .plate-fig .figcap{position:absolute;bottom:0;left:0;right:0;padding:10px 18px;z-index:2;
+    background:linear-gradient(transparent,rgba(20,18,16,.94));
+    font-style:italic;font-size:13px;color:var(--ink-soft)}
+  .plate-fig .figcap b{color:var(--brass);font-style:normal;font-family:'Fraunces',serif}
+  .plate-deep.flip .plate-copy{order:2}
+  .plate-deep.flip .plate-fig{order:1;border-left:none;border-right:1px solid var(--rule-hi)}
+
+  /* printed artifacts inside plates */
+  .printout{position:absolute;inset:0;padding:30px 34px;font-family:'Spline Sans Mono',monospace;
+    font-size:12.5px;line-height:1.95;color:var(--ink-soft);overflow:auto}
+  .printout .t{color:var(--faint)}
+  .printout .bar{color:var(--brass)}
+  .printout .v{color:var(--ink)}
+  .printout .verdict{margin-top:12px;padding-top:12px;border-top:1px dashed var(--rule-hi);
+    font-family:'Newsreader',serif;font-style:italic;font-size:14.5px;color:var(--ink)}
+  .printout .verdict b{color:var(--brass-hi);font-style:normal}
+  .printout .k{color:var(--brass)} .printout .s{color:var(--ink)} .printout .c{color:var(--faint)}
+
+  /* briefs — small items row */
+  .briefs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule-hi)}
+  .brief{padding:24px;border-right:1px solid var(--rule-hi)}
+  .brief:last-child{border-right:none}
+  .brief .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+  .brief h4{font-family:'Fraunces',serif;font-weight:700;font-size:19px;margin-bottom:6px}
+  .brief p{font-size:13.5px;color:var(--ink-soft)}
+  .briefs-caption{text-align:center;font-style:italic;font-size:13.5px;color:var(--faint);margin-top:12px}
+
+  /* dispatches with company standfirsts */
+  .dispatch{display:grid;grid-template-columns:150px 1fr;gap:34px;padding:28px 0;border-top:1px solid var(--rule)}
+  .dispatch:first-of-type{border-top:none}
+  .dis-when{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--brass);padding-top:3px}
+  .dis-when small{display:block;font-style:normal;font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--faint);margin-top:6px;font-family:'Newsreader',serif}
+  .dispatch h3{font-family:'Fraunces',serif;font-weight:600;font-size:23px;margin-bottom:2px}
+  .dispatch h3 span{font-weight:400;font-style:italic;color:var(--ink-soft);font-size:18px}
+  .dis-co{font-style:italic;font-size:14.5px;color:var(--faint);margin-bottom:10px}
+  .dis-stack{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark);margin-bottom:12px}
+  .dispatch p{max-width:64ch;color:var(--ink-soft)}
+  .dispatch p b{color:var(--ink);font-weight:500}
+  .dispatch .also{margin-top:10px;font-size:14px;color:var(--ink-soft)}
+  .dispatch .also b{color:var(--brass-hi);font-weight:500}
+
+  /* letters to the editor */
+  .letters{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:0;border:1px solid var(--rule-hi)}
+  .letter{padding:30px;border-right:1px solid var(--rule-hi)}
+  .letter:last-child{border-right:none}
+  .letter .q{font-size:16.5px;line-height:1.55;font-style:italic;color:var(--ink)}
+  .letter .q::before{content:'“';font-family:'Fraunces',serif;color:var(--brass-hi);font-size:40px;
+    line-height:0;vertical-align:-14px;margin-right:4px}
+  .letter .who{margin-top:18px;border-top:1px dotted var(--rule-hi);padding-top:12px;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .letter .who b{color:var(--ink-soft);display:block;letter-spacing:.05em}
+  .letter.pending{opacity:.65}
+  .letter.pending .q{color:var(--faint);font-size:14.5px}
+
+  /* op-ed principles */
+  .oped{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule-hi);border-bottom:1px solid var(--rule-hi)}
+  .op{padding:24px 22px;border-right:1px dotted var(--rule-hi)}
+  .op:last-child{border-right:none}
+  .op h4{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:17px;color:var(--brass-hi);margin-bottom:8px}
+  .op p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* index */
+  .index-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule-hi)}
+  .index-col{padding:24px 20px 30px;border-bottom:1px solid var(--rule-hi)}
+  .index-col + .index-col{border-left:1px dotted var(--rule-hi)}
+  .index-col h4{font-family:'Fraunces',serif;font-size:12.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+  .index-col ul{list-style:none;font-size:15.5px;color:var(--ink-soft)}
+  .index-col li{padding:3.5px 0}
+  .index-col li b{color:var(--ink);font-weight:500}
+
+  /* colophon */
+  footer{margin-top:70px;border-top:3px double var(--rule-hi);padding:38px 0 60px;text-align:center;
+    background:radial-gradient(60% 130% at 50% 120%, rgba(195,165,114,.07), transparent 60%)}
+  footer .call{font-family:'Fraunces',serif;font-size:clamp(26px,3.4vw,38px);font-weight:700;margin-bottom:10px}
+  footer .call em{font-style:italic;color:var(--brass-hi);font-weight:400}
+  footer p{color:var(--ink-soft);font-size:15px}
+  .foot-links{display:flex;gap:34px;justify-content:center;margin-top:22px}
+  .foot-links a{font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;
+    color:var(--ink);border-bottom:1px solid var(--rule-hi);padding-bottom:3px;transition:color .25s,border-color .25s}
+  .foot-links a:hover{color:var(--brass-hi);border-color:var(--brass)}
+  .colophon{margin-top:44px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  @media (max-width:860px){
+    .lede{grid-template-columns:1fr;gap:34px}
+    .lede-aside{border-left:none;border-top:1px solid var(--rule-hi);padding:24px 0 0}
+    .almanac{grid-template-columns:repeat(3,1fr)}
+    .alm:nth-child(3n){border-right:none}
+    .alm{border-bottom:1px dotted var(--rule-hi)}
+    .cases{grid-template-columns:1fr}
+    .case:nth-child(odd){border-right:none}
+    .case:nth-last-child(-n+2){border-bottom:1px solid var(--rule-hi)}
+    .case:last-child{border-bottom:none}
+    .plate-deep{grid-template-columns:1fr}
+    .plate-fig{border-left:none;border-top:1px solid var(--rule-hi);min-height:340px}
+    .plate-deep.flip .plate-fig{order:2;border-right:none}
+    .plate-deep.flip .plate-copy{order:1}
+    .briefs{grid-template-columns:1fr 1fr}
+    .brief:nth-child(2n){border-right:none}
+    .brief{border-bottom:1px solid var(--rule-hi)}
+    .dispatch{grid-template-columns:1fr;gap:8px}
+    .letters{grid-template-columns:1fr}
+    .letter{border-right:none;border-bottom:1px solid var(--rule-hi)}
+    .letter:last-child{border-bottom:none}
+    .oped{grid-template-columns:1fr 1fr}
+    .index-grid{grid-template-columns:1fr 1fr}
+    .deck{grid-template-columns:1fr;text-align:center;gap:10px}
+    .deck > :first-child{text-align:center}
+    .deck .seal{margin:0 auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="topline">
+    <span>Vol. VII — Berlin · Night Edition</span>
+    <span><span class="dot">●</span>&nbsp; Shipping since MMXIX</span>
+  </div>
+  <h1 class="masthead">Raheed <span class="amp">&</span> the Craft</h1>
+  <div class="deck">
+    <span>Full-Stack Software Engineer</span>
+    <span class="seal">RF</span>
+    <span>TypeScript · End to End</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="lede">
+    <div class="lede-main">
+      <p>Berlin-based engineer building <em>high-traffic TypeScript products</em> end to end — React &amp; Next.js up front, Node.js underneath, and the data &amp; observability layers that keep everything honest. Drawn to the gnarly parts: payments, event-driven systems, pipelines, and the monitoring that tells you the truth at 3 a.m.</p>
+    </div>
+    <aside class="lede-aside">
+      <h3>In this issue</h3>
+      <ul>
+        <li><b>Case files</b> — four engineering stories, told properly</li>
+        <li><b>Plates</b> — Voyager, live and spinning</li>
+        <li><b>Dispatches</b> — the record, with context</li>
+        <li><b>Letters</b> — what colleagues say</li>
+        <li><b>Op-Ed</b> — how I work</li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="almanac reveal">
+    <div class="alm"><b>7+</b><span>years shipping</span></div>
+    <div class="alm"><b>500+</b><span>hotels via Sabre</span></div>
+    <div class="alm"><b>4</b><span>companies · 2 countries</span></div>
+    <div class="alm"><b>5,000</b><span>years rendered</span></div>
+    <div class="alm"><b>1,000+</b><span>figures on a globe</span></div>
+    <div class="alm"><b>Top 3%</b><span>Toptal network</span></div>
+  </div>
+
+  <section id="cases">
+    <div class="sec-head"><span class="no">№ 1</span><h2>The Case Files</h2><div class="rule"></div><span class="kick">What the resume can't say</span></div>
+    <div class="cases">
+      <article class="case reveal">
+        <div class="cat">Payments · reisetopia</div>
+        <h3>Owning the money path</h3>
+        <div class="standfirst">Wherein subscription billing fails in every creative way it can.</div>
+        <p>Renewals that half-complete. Webhooks that arrive twice — or never. Memberships drifting out of sync with what customers actually paid. I integrated <b>Chargebee</b> and took the <b>entire webhook lifecycle</b>: renewals, failures, cancellations, state sync — so what the customer sees always matches what finance sees.</p>
+        <div class="outcome"><b>Outcome</b> — billing that survives its edge cases, not just its happy path.</div>
+      </article>
+      <article class="case reveal">
+        <div class="cat">Event-driven · reisetopia</div>
+        <h3>Rewards as a state machine</h3>
+        <div class="standfirst">A booking becomes loyalty points — through a minefield.</div>
+        <p>The booking-to-points journey is full of retries, replays and race conditions, each an invitation to award someone twice. I modelled the lifecycle as an explicit <b>state machine</b> with <b>idempotent third-party crediting</b> — duplicates became impossible by construction.</p>
+        <div class="outcome"><b>Outcome</b> — zero duplicate awards, by design rather than luck.</div>
+      </article>
+      <article class="case reveal">
+        <div class="cat">Observability · reisetopia</div>
+        <h3>Seeing in the dark</h3>
+        <div class="standfirst">You cannot fix what you cannot see.</div>
+        <p>I instrumented the platform with <b>Datadog</b> for monitoring and logging and <b>PostHog</b> for product events, then built <b>ETL pipelines</b> aggregating affiliate lead &amp; sales data into <b>BigQuery</b> for the finance product — turning "we think" into "we know" across two departments.</p>
+        <div class="outcome"><b>Outcome</b> — failures surface themselves; decisions run on data.</div>
+      </article>
+      <article class="case reveal">
+        <div class="cat">The team · reisetopia</div>
+        <h3>Rebuilding how we hire</h3>
+        <div class="standfirst">The interview process is a product, too.</div>
+        <p>The process I inherited didn't predict job performance. I redesigned it end to end — reworked the <b>coding challenge</b>, added a <b>system-design round</b>, restructured the interviews into focused stages — then sat in those interviews and helped shape the hires.</p>
+        <div class="outcome"><b>Outcome</b> — a process that selects for the work, not for interview tricks.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="plates">
+    <div class="sec-head"><span class="no">№ 2</span><h2>Selected Plates</h2><div class="rule"></div><span class="kick">The evidence, exhibited</span></div>
+
+    <div class="plate-deep reveal">
+      <div class="plate-copy">
+        <span class="roman">Plate I — the flagship</span>
+        <h3>Voyager</h3>
+        <p>An interactive 3D globe of world history: scrub through <b>5,000 years</b> and see who was alive, anywhere on Earth, at any moment — emperors beside poets, dynasties rising as beams of light.</p>
+        <ul>
+          <li><b>1,000+ figures &amp; dynasties</b>, enriched through a Wikidata verification pipeline</li>
+          <li><b>Procedural WebGL landmarks</b> — low-poly monuments assembled from a parts kit</li>
+          <li>Antique-atlas art direction; hand-tuned serif typography &amp; sepia cartography</li>
+          <li>React · TypeScript · Three.js (R3F) · Zustand · on-demand rendering</li>
+        </ul>
+        <div class="links"><a href="https://voyager-rouge-nine.vercel.app">Open live</a><a href="https://github.com/RaheedFarooq/Voyager">Source</a></div>
+      </div>
+      <div class="plate-fig">
+        <iframe src="https://voyager-rouge-nine.vercel.app" loading="lazy" title="Voyager — live demo"></iframe>
+        <div class="figcap"><b>Fig. 1</b> — the living globe, embedded. Drag it; scrub the centuries.</div>
+      </div>
+    </div>
+
+    <div class="plate-deep flip reveal">
+      <div class="plate-copy">
+        <span class="roman">Plate II</span>
+        <h3>Shark</h3>
+        <p>A brutally honest AI product evaluator for Claude Code. Pitch it an idea; it asks the questions that move scores, then returns a <b>verdict-first teardown</b> — concept vs. execution, market fit, and what to build first.</p>
+        <ul>
+          <li>Scored scorecards across concept, execution, market &amp; growth</li>
+          <li><b>Mentor mode</b> — researches the live competitive landscape, then drafts the action plan</li>
+          <li>Installs as a Claude Code skill or via plugin marketplace, one command</li>
+        </ul>
+        <div class="links"><a href="https://github.com/RaheedFarooq/shark">Source</a></div>
+      </div>
+      <div class="plate-fig">
+        <div class="printout">
+<span class="t">— specimen printout: the scorecard —</span><br>
+CONCEPT<br>
+Core insight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">████████▌░</span>&nbsp;&nbsp;<span class="v">8.5</span><br>
+Retention, today&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">███░░░░░░░</span>&nbsp;&nbsp;<span class="v">3.0</span><br>
+EXECUTION<br>
+Craft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">█████████░</span>&nbsp;&nbsp;<span class="v">9.0</span><br>
+MARKET<br>
+Shareability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">██░░░░░░░░</span>&nbsp;&nbsp;<span class="v">2.0</span><br>
+<div class="verdict"><b>The call:</b> concept 8, execution 6 — the gap is closable. I'm in on the product, out on the business. Ship deep links first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plate-deep reveal">
+      <div class="plate-copy">
+        <span class="roman">Plate III</span>
+        <h3>CustomApis</h3>
+        <p>A schema-based <b>mock API generator</b>: describe the shape of your data, receive living endpoints at once. Born of a recurring pain — front-ends blocked on backends that don't exist yet.</p>
+        <ul>
+          <li>Define schemas → endpoints go live immediately</li>
+          <li>Node.js + Firestore behind · React + Tailwind in front</li>
+        </ul>
+        <div class="links"><a href="https://github.com/RaheedFarooq/customendpoints_api">Source</a></div>
+      </div>
+      <div class="plate-fig">
+        <div class="printout">
+<span class="c">$</span> <span class="s">curl</span> api.customapis.dev<span class="k">/mock/users/42</span><br>
+<span class="c">HTTP/1.1 200 OK · 38ms</span><br>
+{<br>
+&nbsp;&nbsp;<span class="k">"id"</span>: <span class="v">42</span>,<br>
+&nbsp;&nbsp;<span class="k">"name"</span>: <span class="s">"Amara Osei"</span>,<br>
+&nbsp;&nbsp;<span class="k">"plan"</span>: <span class="s">"pro"</span>,<br>
+&nbsp;&nbsp;<span class="k">"usage"</span>: { <span class="k">"calls"</span>: <span class="v">1284</span>, <span class="k">"quota"</span>: <span class="v">5000</span> }<br>
+}<br>
+<span class="c">// generated from your schema — no backend required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="briefs reveal">
+      <div class="brief">
+        <div class="cat">Client · led the front-end</div>
+        <h4>Scout</h4>
+        <p>Activity management for working parents — feature estimation, team coordination, delivery.</p>
+      </div>
+      <div class="brief">
+        <div class="cat">Client · dataviz</div>
+        <h4>Litterati</h4>
+        <p>Environmental platform fighting litter with data. React dashboards, visualisations, APIs, Lambda.</p>
+      </div>
+      <div class="brief">
+        <div class="cat">Product</div>
+        <h4>WeFetch</h4>
+        <p>Appointment scheduling for veterinary clinics — React admin on a Node/Sails.js API.</p>
+      </div>
+      <div class="brief">
+        <div class="cat">Mobile</div>
+        <h4>HotDeals</h4>
+        <p>Recommendation app on Ionic &amp; Angular, Firebase/Firestore, AdSense.</p>
+      </div>
+    </div>
+    <div class="briefs-caption">— also in this edition: earlier works &amp; client engagements —</div>
+  </section>
+
+  <section id="dispatches">
+    <div class="sec-head"><span class="no">№ 3</span><h2>Dispatches from the Field</h2><div class="rule"></div><span class="kick">The record</span></div>
+
+    <article class="dispatch reveal">
+      <div class="dis-when">2023 — present<small>Berlin</small></div>
+      <div>
+        <h3>reisetopia <span>· TypeScript Fullstack Engineer</span></h3>
+        <div class="dis-co">Germany's luxury-hotel booking platform — 500+ resorts wired through the Sabre GDS, every booking with VIP benefits attached.</div>
+        <div class="dis-stack">TypeScript · Next.js · Node · MySQL · Salesforce · Datadog</div>
+        <p>Owns the money and the machinery: <b>Chargebee billing</b>, the <b>rewards state machine</b>, <b>ETL into BigQuery</b>, platform observability, and the <b>Salesforce integration</b> — bookings become Opportunities, signups become accounts, automatically.</p>
+        <p class="also">Beyond the code: rebuilt the <b>hiring process</b>, set <b>engineering standards</b>, led architecture decisions across the team.</p>
+      </div>
+    </article>
+
+    <article class="dispatch reveal">
+      <div class="dis-when">2021 — 2023<small>Remote · Germany</small></div>
+      <div>
+        <h3>Filestage <span>· JS Fullstack Engineer → Feature Lead</span></h3>
+        <div class="dis-co">B2B SaaS where marketing &amp; creative teams review and approve content — videos, designs, documents — without email chaos.</div>
+        <div class="dis-stack">TypeScript · React · Node · WebSockets · Jest · Playwright</div>
+        <p>Built <b>event automation</b> that advances projects and notifies collaborators on triggers; migrated legacy AngularJS to <b>React in a monorepo</b>; shipped real-time features on WebSockets; and stabilised a flaky end-to-end suite until CI told the truth again.</p>
+      </div>
+    </article>
+
+    <article class="dispatch reveal">
+      <div class="dis-when">2019 — 2021<small>Karachi</small></div>
+      <div>
+        <h3>Creative Chaos <span>· Software Engineer ← Associate</span></h3>
+        <div class="dis-co">Software consultancy crafting products for US clients — including Litterati and Scout, above.</div>
+        <div class="dis-stack">JavaScript · React · GraphQL · PostgreSQL · AWS</div>
+        <p>A <b>data-intensive charting platform</b>; GraphQL APIs on Apollo Server &amp; Client; PostgreSQL with an <b>AWS RedShift data lake</b> for analytics; serverless workflows on Lambda; technical concept documents and delivery estimates for a B2B SaaS. Where the fundamentals were forged.</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="letters">
+    <div class="sec-head"><span class="no">№ 4</span><h2>Letters to the Editor</h2><div class="rule"></div><span class="kick">On the record</span></div>
+    <div class="letters">
+      <div class="letter reveal">
+        <div class="q">An outstanding full-stack engineer — strong across front-end and back-end alike, with exceptional empathy for client needs and excellent communication.</div>
+        <div class="who"><b>Toptal screening &amp; client feedback</b>Top 3% network · vetted 2022</div>
+      </div>
+      <div class="letter pending reveal">
+        <div class="q">This column awaits correspondence from a reisetopia colleague. (LinkedIn recommendation — requested.)</div>
+        <div class="who"><b>To the Editor</b>Forthcoming</div>
+      </div>
+      <div class="letter pending reveal">
+        <div class="q">Reserved for a Filestage teammate's account of the great AngularJS migration.</div>
+        <div class="who"><b>To the Editor</b>Forthcoming</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="oped">
+    <div class="sec-head"><span class="no">№ 5</span><h2>Op-Ed: How I Work</h2><div class="rule"></div></div>
+    <div class="oped reveal">
+      <div class="op"><h4>Instrument everything.</h4><p>If it isn't monitored, it isn't done. Failures should announce themselves before users do.</p></div>
+      <div class="op"><h4>Own the gnarly parts.</h4><p>Payments, retries, race conditions — the unglamorous fifth of the work where products actually break.</p></div>
+      <div class="op"><h4>Boring over clever.</h4><p>Code is read at 3 a.m. by tired people. State machines beat spaghetti; explicit beats magic.</p></div>
+      <div class="op"><h4>Raise the bar.</h4><p>Standards, architecture reviews, better hiring — leverage compounds through a team.</p></div>
+    </div>
+  </section>
+
+  <section id="index">
+    <div class="sec-head"><span class="no">№ 6</span><h2>Index of Instruments</h2><div class="rule"></div></div>
+    <div class="index-grid">
+      <div class="index-col reveal">
+        <h4>Languages &amp; Frames</h4>
+        <ul><li><b>TypeScript</b></li><li><b>React / Next.js</b></li><li>Node.js · Express</li><li>Angular · GraphQL</li><li>PHP</li></ul>
+      </div>
+      <div class="index-col reveal">
+        <h4>Data</h4>
+        <ul><li><b>PostgreSQL</b></li><li>MySQL · MongoDB</li><li><b>BigQuery</b></li><li>AWS RedShift</li></ul>
+      </div>
+      <div class="index-col reveal">
+        <h4>Ops &amp; Observability</h4>
+        <ul><li><b>Datadog</b> · Sentry</li><li>PostHog</li><li>Docker · AWS</li><li>GitHub Actions · Jenkins</li></ul>
+      </div>
+      <div class="index-col reveal">
+        <h4>Testing &amp; State</h4>
+        <ul><li><b>Jest · Playwright</b></li><li>Redux · Zustand</li><li>React Query</li><li>Storybook</li></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="call">Let's build something <em>worth reading about.</em></div>
+    <p>Open to interesting problems — especially the gnarly ones.</p>
+    <div class="foot-links">
+      <a href="mailto:raheedfarooq65@gmail.com">Email</a>
+      <a href="https://github.com/RaheedFarooq">GitHub</a>
+      <a href="https://de.linkedin.com/in/raheed-farooq">LinkedIn</a>
+    </div>
+    <div class="colophon">Set in Fraunces &amp; Newsreader · Composed in Berlin · MMXXVI</div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

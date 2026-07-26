@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup D2 · Bento, Deep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Spline+Sans+Mono:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101014; --card:#17171D; --card-2:#1C1C24; --edge:#26262F; --edge-hi:#3A3A46;
+    --text:#E7E7EC; --dim:#8A8A96; --faint:#55555F;
+    --lime:#C8F04C; --coral:#FF6D5A; --sky:#6DB5FF; --violet:#B79DFF; --gold:#F0C04C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Bricolage Grotesque',sans-serif;
+    font-size:16px;line-height:1.65}
+  .wrap{max-width:1140px;margin:0 auto;padding:56px 28px 90px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--lime);color:#101014}
+  .mono{font-family:'Spline Sans Mono',monospace}
+
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+  .top .id{display:flex;align-items:center;gap:14px}
+  .top .avatar{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--lime),#7CB82F);
+    display:grid;place-items:center;color:#15200A;font-weight:800;font-size:17px}
+  .top .id b{font-size:17px;font-weight:700;display:block;line-height:1.2}
+  .top .id span{font-size:13px;color:var(--dim)}
+  .top .cta{font-size:14px;font-weight:600;background:var(--text);color:#101014;
+    padding:11px 22px;border-radius:100px;transition:transform .2s,background .2s}
+  .top .cta:hover{transform:scale(1.04);background:var(--lime)}
+
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .cell{background:var(--card);border:1px solid var(--edge);border-radius:22px;padding:28px;
+    transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+  .cell:hover{border-color:var(--edge-hi)}
+  .lbl{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .lbl::before{content:'';width:6px;height:6px;border-radius:2px;background:var(--lime)}
+
+  /* hero */
+  .hero{grid-column:span 8;padding:36px;background:
+    radial-gradient(120% 160% at 85% -20%, rgba(200,240,76,.10), transparent 55%), var(--card)}
+  .hero h1{font-size:clamp(30px,4.4vw,50px);font-weight:750;line-height:1.05;letter-spacing:-.02em}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero p{color:var(--dim);margin-top:16px;max-width:54ch;font-size:16.5px}
+  .hero p b{color:var(--text);font-weight:600}
+  .status{grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between}
+  .status .big{font-size:30px;font-weight:750;line-height:1.12}
+  .status .big small{display:block;font-size:13.5px;font-weight:400;color:var(--dim);margin-top:6px}
+  .status .row{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--edge);
+    font-size:13px;color:var(--dim)}
+  .status .row b{color:var(--text);font-weight:600;text-align:right}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);
+    margin-right:8px;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,240,76,.45)}60%{box-shadow:0 0 0 8px rgba(200,240,76,0)}}
+
+  /* numbers strip */
+  .nums{grid-column:span 12;display:grid;grid-template-columns:repeat(6,1fr);padding:0;overflow:hidden}
+  .num{padding:22px 18px;text-align:center;border-right:1px solid var(--edge)}
+  .num:last-child{border-right:none}
+  .num b{display:block;font-size:26px;font-weight:750;color:var(--lime)}
+  .num span{font-size:11px;color:var(--dim);letter-spacing:.06em}
+  .num:nth-child(2) b{color:var(--sky)} .num:nth-child(3) b{color:var(--coral)}
+  .num:nth-child(4) b{color:var(--violet)} .num:nth-child(5) b{color:var(--gold)}
+  .num:nth-child(6) b{color:var(--lime)}
+
+  /* section divider cell */
+  .divider{grid-column:span 12;background:none;border:none;padding:26px 4px 2px;border-radius:0}
+  .divider h2{font-size:clamp(21px,2.6vw,28px);font-weight:750}
+  .divider h2 em{font-style:normal;color:var(--lime)}
+  .divider p{color:var(--faint);font-size:13.5px;margin-top:4px}
+
+  /* story cells */
+  .story{grid-column:span 6;display:flex;flex-direction:column}
+  .story h3{font-size:20px;font-weight:700;margin-bottom:10px}
+  .story h3 .tagno{font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--faint);
+    display:block;margin-bottom:8px;letter-spacing:.16em}
+  .story p{font-size:14px;color:var(--dim);flex:1}
+  .story p b{color:var(--text);font-weight:600}
+  .story .out{margin-top:14px;border-top:1px solid var(--edge);padding-top:12px;font-size:13px;color:var(--dim)}
+  .story .out b{color:var(--lime);font-weight:600}
+  .story.s2 .out b{color:var(--sky)} .story.s3 .out b{color:var(--coral)} .story.s4 .out b{color:var(--violet)}
+
+  /* deep project cells */
+  .proj-deep{grid-column:span 12;display:grid;grid-template-columns:1fr 1.1fr;gap:0;padding:0}
+  .proj-copy{padding:32px 34px;display:flex;flex-direction:column}
+  .proj-copy .lbl::before{background:var(--sky)}
+  .proj-copy h3{font-size:28px;font-weight:750;margin-bottom:10px}
+  .proj-copy p{font-size:14.5px;color:var(--dim)}
+  .proj-copy ul{list-style:none;margin-top:14px;font-size:13.5px;color:var(--dim)}
+  .proj-copy li{padding:6px 0 6px 22px;position:relative;border-top:1px solid var(--edge)}
+  .proj-copy li::before{content:'▸';position:absolute;left:2px;color:var(--sky)}
+  .proj-copy li b{color:var(--text);font-weight:600}
+  .proj-copy .links{margin-top:auto;padding-top:18px;display:flex;gap:18px;
+    font-family:'Spline Sans Mono',monospace;font-size:12.5px}
+  .proj-copy .links a{color:var(--sky);border-bottom:1px solid rgba(109,181,255,.4);padding-bottom:2px}
+  .proj-visual{background:var(--card-2);border-left:1px solid var(--edge);position:relative;min-height:380px}
+  .proj-visual iframe{width:100%;height:100%;border:0;position:absolute;inset:0}
+  .proj-visual .cap{position:absolute;bottom:0;left:0;right:0;padding:10px 16px;
+    background:linear-gradient(transparent,rgba(16,16,20,.92));font-family:'Spline Sans Mono',monospace;
+    font-size:11px;color:var(--dim);z-index:2}
+  .proj-deep.flip .proj-copy{order:2}
+  .proj-deep.flip .proj-visual{order:1;border-left:none;border-right:1px solid var(--edge)}
+  .proj-deep.flip .proj-copy .lbl::before{background:var(--coral)}
+  .proj-deep.flip .proj-copy li::before{color:var(--coral)}
+  .proj-deep.flip .proj-copy .links a{color:var(--coral);border-color:rgba(255,109,90,.4)}
+
+  /* artifact panels (shark scorecard / json) */
+  .artifact{padding:26px;font-family:'Spline Sans Mono',monospace;font-size:12.5px;line-height:1.9;
+    color:var(--dim);overflow:auto;position:relative;height:100%}
+  .artifact .t{color:var(--faint)}
+  .artifact .bar{color:var(--coral)}
+  .artifact .num-v{color:var(--text)}
+  .artifact .verdict{margin-top:12px;padding-top:12px;border-top:1px dashed var(--edge-hi);color:var(--text)}
+  .artifact .verdict b{color:var(--coral)}
+  .artifact .k{color:var(--violet)} .artifact .s{color:var(--lime)} .artifact .n{color:var(--gold)}
+  .artifact .c{color:var(--faint)}
+
+  /* small project cells */
+  .mini{grid-column:span 3;min-height:170px;display:flex;flex-direction:column}
+  .mini h4{font-size:16.5px;font-weight:700;margin-bottom:6px}
+  .mini p{font-size:12.5px;color:var(--dim);flex:1}
+  .mini .role{font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--faint);
+    margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
+  .mini .lbl::before{background:var(--gold)}
+
+  /* experience deep */
+  .xp{grid-column:span 6}
+  .xp.wide{grid-column:span 12;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}
+  .xp-main{padding:30px 34px}
+  .xp-extra{padding:30px 34px;border-left:1px solid var(--edge);background:var(--card-2)}
+  .xp .co{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .xp .co h3{font-size:22px;font-weight:750}
+  .xp .co .when{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--faint)}
+  .xp .about-co{font-size:13px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .xp .role{font-size:13px;color:var(--dim);margin-bottom:14px}
+  .xp .role b{color:var(--gold);font-weight:600}
+  .xp ul{list-style:none;font-size:13.5px;color:var(--dim)}
+  .xp li{padding:7px 0 7px 20px;border-top:1px solid var(--edge);position:relative}
+  .xp li::before{content:'→';position:absolute;left:0;color:var(--gold);font-weight:700}
+  .xp li b{color:var(--text);font-weight:600}
+  .xp .lbl::before{background:var(--gold)}
+
+  /* voices */
+  .voice{grid-column:span 4;display:flex;flex-direction:column}
+  .voice .q{font-size:15px;color:var(--text);font-weight:400;line-height:1.6;flex:1}
+  .voice .q::before{content:'“';color:var(--violet);font-size:34px;line-height:0;vertical-align:-12px;margin-right:4px}
+  .voice .who{margin-top:16px;border-top:1px solid var(--edge);padding-top:12px;
+    font-size:12px;color:var(--dim)}
+  .voice .who b{color:var(--text);display:block;font-weight:600}
+  .voice.pending{border-style:dashed;opacity:.75}
+  .voice.pending .q{color:var(--faint);font-style:italic}
+  .voice .lbl::before{background:var(--violet)}
+
+  /* principles */
+  .prin{grid-column:span 3;min-height:150px}
+  .prin h4{font-size:15.5px;font-weight:700;margin-bottom:8px;color:var(--lime)}
+  .prin:nth-child(odd) h4{color:var(--sky)}
+  .prin p{font-size:12.5px;color:var(--dim)}
+  .prin .lbl{display:none}
+
+  /* stack + meta + contact */
+  .stack{grid-column:span 8}
+  .stack .groups{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .stack h4{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  .stack ul{list-style:none;font-size:14px;color:var(--dim)}
+  .stack li{padding:3px 0}
+  .stack li.hi{color:var(--text);font-weight:600}
+  .stack .lbl::before{background:var(--violet)}
+  .meta{grid-column:span 4}
+  .meta .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--edge);
+    font-size:13.5px;color:var(--dim)}
+  .meta .row:last-child{border-bottom:none}
+  .meta .row b{color:var(--text);font-weight:600}
+  .meta .lbl::before{background:var(--coral)}
+  .contact{grid-column:span 12;background:
+    radial-gradient(90% 200% at 50% 130%, rgba(200,240,76,.14), transparent 60%), var(--card);
+    text-align:center;padding:52px 26px}
+  .contact h2{font-size:clamp(26px,3.6vw,42px);font-weight:750}
+  .contact h2 em{font-style:normal;color:var(--lime)}
+  .contact p{color:var(--dim);margin:10px 0 26px}
+  .contact .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{font-size:14.5px;font-weight:600;padding:13px 26px;border-radius:100px;transition:transform .2s,background .2s,color .2s}
+  .btn.pri{background:var(--lime);color:#15200A}
+  .btn.pri:hover{transform:scale(1.05)}
+  .btn.sec{border:1px solid var(--edge-hi);color:var(--text)}
+  .btn.sec:hover{border-color:var(--lime);color:var(--lime)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  @media (max-width:920px){
+    .hero,.status,.story,.proj-deep,.mini,.xp,.xp.wide,.voice,.prin,.stack,.meta{grid-column:span 12}
+    .nums{grid-template-columns:repeat(3,1fr)}
+    .num:nth-child(3n){border-right:none}
+    .num{border-bottom:1px solid var(--edge)}
+    .proj-deep{grid-template-columns:1fr}
+    .proj-visual{border-left:none;border-top:1px solid var(--edge);min-height:320px}
+    .proj-deep.flip .proj-visual{order:2;border-right:none}
+    .proj-deep.flip .proj-copy{order:1}
+    .xp.wide{grid-template-columns:1fr}
+    .xp-extra{border-left:none;border-top:1px solid var(--edge)}
+    .stack .groups{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="id">
+      <div class="avatar">RF</div>
+      <div><b>Raheed Farooq</b><span>Full-Stack Engineer · Berlin</span></div>
+    </div>
+    <a class="cta" href="https://de.linkedin.com/in/raheed-farooq" target="_blank" rel="noopener">Get in touch</a>
+  </div>
+
+  <div class="bento">
+
+    <div class="cell hero reveal">
+      <div class="lbl">About</div>
+      <h1>I build high-traffic <em>TypeScript</em> products, end to end.</h1>
+      <p>React/Next.js front-ends, Node.js services, and the data &amp; observability layers underneath. Drawn to the hard parts: <b>payments &amp; billing</b>, <b>event-driven systems</b>, <b>ETL pipelines</b> — and the monitoring that keeps them honest.</p>
+    </div>
+
+    <div class="cell status reveal">
+      <div class="lbl">Status</div>
+      <div class="big"><span class="dot"></span>Shipping<small>Berlin · UTC+1 · since 2019</small></div>
+      <div>
+        <div class="row"><span>Current focus</span><b>Booking &amp; loyalty infra</b></div>
+        <div class="row"><span>Freelance network</span><b>Toptal-vetted</b></div>
+        <div class="row"><span>Open to</span><b>Interesting problems</b></div>
+      </div>
+    </div>
+
+    <div class="cell nums reveal">
+      <div class="num"><b>7+</b><span>years shipping</span></div>
+      <div class="num"><b>10+</b><span>products &amp; projects shipped</span></div>
+      <div class="num"><b>5</b><span>industries served</span></div>
+      <div class="num"><b>2</b><span>countries — Karachi → Berlin</span></div>
+      <div class="num"><b>3</b><span>languages spoken</span></div>
+      <div class="num"><b>Top 3%</b><span>Toptal network</span></div>
+    </div>
+
+    <div class="divider">
+      <h2>Engineering <em>stories</em></h2>
+      <p>A closer look at some of the work — what the problem was, and how it got solved.</p>
+    </div>
+
+    <div class="cell story reveal">
+      <h3><span class="tagno">CASE 01 · PAYMENTS</span>Owning the money path</h3>
+      <p>Subscription billing has a lot of ways to go wrong: renewals that half-complete, webhooks that arrive twice, membership states that drift away from what was actually paid. I integrated <b>Chargebee</b> and handled the <b>full webhook lifecycle</b> — renewals, failures, cancellations, state sync — so the state customers see stays in line with what was billed.</p>
+      <div class="out">Outcome → <b>billing that stays correct</b>, including the edge cases.</div>
+    </div>
+
+    <div class="cell story s2 reveal">
+      <h3><span class="tagno">CASE 02 · EVENT-DRIVEN</span>Rewards as a state machine</h3>
+      <p>Turning a booking into loyalty points involves several steps that can each fail or repeat. I modelled the booking-to-points lifecycle as an explicit <b>state machine</b>, with <b>idempotent third-party crediting</b>, so that retries, replays and race conditions don't lead to duplicate awards.</p>
+      <div class="out">Outcome → <b>retries and replays are safe</b>; duplicate awards don't happen.</div>
+    </div>
+
+    <div class="cell story s3 reveal">
+      <h3><span class="tagno">CASE 03 · OBSERVABILITY</span>Seeing in the dark</h3>
+      <p>I instrumented the platform with <b>Datadog</b> for monitoring and logging and <b>PostHog</b> for product events, and built <b>ETL pipelines</b> that bring affiliate lead &amp; sales data into <b>BigQuery</b> for the finance team's analytics. Failures show up in dashboards rather than in support tickets.</p>
+      <div class="out">Outcome → problems get noticed early, and <b>decisions are based on real data</b>.</div>
+    </div>
+
+    <div class="cell story s4 reveal">
+      <h3><span class="tagno">CASE 04 · TEAM</span>Rebuilding how we hire</h3>
+      <p>Our hiring process wasn't telling us much about how someone would actually do the job. I redesigned it end to end — reworked the <b>coding challenge</b>, added a <b>system-design round</b>, restructured the interviews into focused stages — and conducted interviews to help shape the hiring decisions.</p>
+      <div class="out">Outcome → interviews that <b>reflect the actual day-to-day work</b>.</div>
+    </div>
+
+    <div class="divider">
+      <h2>Selected <em>work</em></h2>
+      <p>Built nights and weekends. Voyager is live, if you'd like to poke around.</p>
+    </div>
+
+    <div class="cell proj-deep reveal">
+      <div class="proj-copy">
+        <div class="lbl">Project 01 · Live</div>
+        <h3>Voyager</h3>
+        <p>An interactive 3D globe of world history: scrub through <b>5,000 years</b> and watch who was alive, where — emperors, poets, dynasties — at any moment on Earth.</p>
+        <ul>
+          <li>A <b>hand-vetted dataset</b> of 1,000+ historical figures &amp; dynasties</li>
+          <li><b>Procedural WebGL landmarks</b> — low-poly monuments built from a parts kit</li>
+          <li>Antique-atlas art direction: sepia cartography, wireframe globe, hand-tuned serif type</li>
+          <li>React · TypeScript · Three.js (react-three-fiber) · Zustand · on-demand rendering</li>
+        </ul>
+        <div class="links"><a href="https://voyager-rouge-nine.vercel.app">open live ↗</a><a href="https://github.com/RaheedFarooq/Voyager">source</a></div>
+      </div>
+      <div class="proj-visual">
+        <iframe src="https://voyager-rouge-nine.vercel.app" loading="lazy" title="Voyager live demo"></iframe>
+        <div class="cap">live embed — voyager-rouge-nine.vercel.app</div>
+      </div>
+    </div>
+
+    <div class="cell proj-deep flip reveal">
+      <div class="proj-copy">
+        <div class="lbl">Project 02 · Open source</div>
+        <h3>Shark</h3>
+        <p>A brutally honest AI product evaluator for Claude Code. Pitch it your idea; it asks the questions that move scores, then returns a <b>verdict-first teardown</b>: concept vs. execution, market fit, and what to build first.</p>
+        <ul>
+          <li>Scored ASCII scorecards across concept, execution, market &amp; growth</li>
+          <li><b>Mentor mode</b>: researches the real competitive landscape, then builds an action plan</li>
+          <li>Installable as a Claude Code skill or plugin marketplace — one command</li>
+        </ul>
+        <div class="links"><a href="https://github.com/RaheedFarooq/shark">source ↗</a></div>
+      </div>
+      <div class="proj-visual">
+        <div class="artifact">
+<span class="t">// sample output — the scorecard</span><br>
+CONCEPT<br>
+Core insight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">████████▌░</span>&nbsp;<span class="num-v">8.5</span><br>
+Retention today&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">███░░░░░░░</span>&nbsp;<span class="num-v">3.0</span><br>
+EXECUTION<br>
+Craft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">█████████░</span>&nbsp;<span class="num-v">9.0</span><br>
+MARKET<br>
+Shareability&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bar">██░░░░░░░░</span>&nbsp;<span class="num-v">2.0</span><br>
+<div class="verdict"><b>Verdict:</b> concept 8, execution 6 — the gap is closable. I'm in on the product, out on the business. Ship deep links first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell proj-deep reveal">
+      <div class="proj-copy">
+        <div class="lbl">Project 03 · Tool</div>
+        <h3>CustomApis</h3>
+        <p>A schema-based <b>mock API generator</b>: describe the shape of your data, get live mock endpoints to develop against. Built to unblock front-end work while the real backend is still being built. Node.js + Firestore behind, React + Tailwind in front.</p>
+      </div>
+      <div class="proj-visual">
+        <div class="artifact">
+<span class="c">// the input — describe your shape</span><br>
+{<br>
+&nbsp;&nbsp;<span class="k">"length"</span>: <span class="n">5</span>,<br>
+&nbsp;&nbsp;<span class="k">"name"</span>:&nbsp;&nbsp;{ <span class="k">"type"</span>: <span class="s">"STRING"</span> },<br>
+&nbsp;&nbsp;<span class="k">"age"</span>:&nbsp;&nbsp;&nbsp;{ <span class="k">"type"</span>: <span class="s">"INTEGER"</span> },<br>
+&nbsp;&nbsp;<span class="k">"bio"</span>:&nbsp;&nbsp;&nbsp;{ <span class="k">"type"</span>: <span class="s">"TEXT"</span>, <span class="k">"min"</span>: <span class="n">20</span>, <span class="k">"max"</span>: <span class="n">40</span> },<br>
+&nbsp;&nbsp;<span class="k">"tags"</span>:&nbsp;&nbsp;{ <span class="k">"type"</span>: <span class="s">"ARRAY"</span>, <span class="k">"of"</span>: <span class="s">"integer"</span>, <span class="k">"length"</span>: <span class="n">5</span> },<br>
+&nbsp;&nbsp;<span class="k">"address"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">"type"</span>: <span class="s">"OBJECT"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">"properties"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">"street"</span>: { <span class="k">"type"</span>: <span class="s">"TEXT"</span> },<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">"geo"</span>:&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="k">"type"</span>: <span class="s">"OBJECT"</span>, <span class="k">"properties"</span>: { <span class="k">"lat"</span>: { <span class="k">"type"</span>: <span class="s">"DECIMAL"</span> } } }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="k">"status"</span>: { <span class="k">"type"</span>: <span class="s">"CUSTOM"</span>, <span class="k">"value"</span>: <span class="s">"active"</span> }<br>
+}<br>
+<span class="c">// → live endpoints, generated from this shape</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">
+      <h2>Also <em>built</em></h2>
+      <p>Client work &amp; earlier experiments.</p>
+    </div>
+
+    <div class="cell mini reveal">
+      <div class="lbl">Client · Lead</div>
+      <h4>Scout</h4>
+      <p>Activity management app for working parents. Led the front-end: feature estimation, team coordination, delivery.</p>
+      <div class="role">React · Team Lead</div>
+    </div>
+    <div class="cell mini reveal">
+      <div class="lbl">Client</div>
+      <h4>Litterati</h4>
+      <p>Environmental platform fighting litter with data. Full-stack work with a backend focus — APIs, AWS Lambda functions, and React dashboards with data visualisations.</p>
+      <div class="role">Full-stack · Backend-lean · AWS</div>
+    </div>
+    <div class="cell mini reveal">
+      <div class="lbl">Product</div>
+      <h4>WeFetch</h4>
+      <p>Appointment scheduling for veterinary clinics — React admin dashboard on a Node/Sails.js API.</p>
+      <div class="role">Full-stack</div>
+    </div>
+    <div class="cell mini reveal">
+      <div class="lbl">Product · Travel</div>
+      <h4>Suitespot</h4>
+      <p>Luxury-hotel booking platform spun out of reisetopia — 4,200+ hotels worldwide, VIP benefits on every booking. Core platform engineering across booking, billing and rewards.</p>
+      <div class="role">TypeScript · Next.js · Full-stack</div>
+    </div>
+
+    <div class="divider">
+      <h2>The <em>record</em></h2>
+      <p>Where, and what actually got done there.</p>
+    </div>
+
+    <div class="cell xp wide reveal">
+      <div class="xp-main">
+        <div class="lbl">2023 — now</div>
+        <div class="co"><h3>reisetopia</h3><span class="when">Berlin</span></div>
+        <div class="about-co">Berlin travel-tech — the company behind suitespot (luxury-hotel bookings with VIP benefits) and a growing finance product.</div>
+        <div class="role">TypeScript Fullstack Engineer</div>
+        <ul>
+          <li><b>Hotel booking &amp; reservations</b> via the Sabre GDS API</li>
+          <li><b>Subscription membership billing</b> — built on Chargebee, covering the full webhook lifecycle: renewals, failures, state sync</li>
+          <li><b>Rewards state machine</b> with idempotent third-party crediting</li>
+          <li>ETL pipelines → <b>BigQuery</b> for the finance product's analytics</li>
+          <li><b>Salesforce sync</b> via jsforce — bookings become Opportunities automatically</li>
+        </ul>
+      </div>
+      <div class="xp-extra">
+        <div class="lbl">Beyond the code</div>
+        <ul>
+          <li>Redesigned the <b>engineering hiring process</b>: new challenge, system-design round, staged interviews</li>
+          <li>Set <b>engineering standards</b>; led architecture decisions across the team</li>
+          <li>Instrumented the platform with <b>Datadog + PostHog</b> — monitoring, logging, product events</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cell xp reveal">
+      <div class="lbl">2021 — 2023</div>
+      <div class="co"><h3>Filestage</h3><span class="when">Remote (DE)</span></div>
+      <div class="about-co">B2B SaaS where marketing &amp; creative teams review and approve content.</div>
+      <div class="role">JS Fullstack Engineer</div>
+      <ul>
+        <li><b>Event automation</b>: user-configured triggers advance projects &amp; notify collaborators</li>
+        <li>AngularJS → <b>React migration</b> within a monorepo</li>
+        <li>Real-time backend on <b>WebSockets</b>; stabilised a flaky Jest/Playwright suite</li>
+      </ul>
+    </div>
+
+    <div class="cell xp reveal">
+      <div class="lbl">2019 — 2021</div>
+      <div class="co"><h3>Creative Chaos</h3><span class="when">Karachi</span></div>
+      <div class="about-co">Software consultancy building and scaling products for US-based clients — Litterati and Scout among them.</div>
+      <div class="role">Software Engineer ← Associate</div>
+      <ul>
+        <li>Data-intensive <b>analytics dashboard</b> — React charting over PostgreSQL with an <b>AWS RedShift data lake</b></li>
+        <li>Independent <b>Open Data platform</b> — GraphQL API on Apollo Server, Apollo Client on React</li>
+        <li>Serverless workflows on <b>AWS Lambda</b>; technical concept docs &amp; estimates</li>
+      </ul>
+    </div>
+
+    <div class="divider">
+      <h2>What people <em>say</em></h2>
+      <p>LinkedIn recommendations, quoted as written.</p>
+    </div>
+
+    <div class="cell voice reveal">
+      <div class="lbl">Recommendation</div>
+      <div class="q">Raheed consistently delivered high-quality code… his expertise in end-to-end testing was particularly impressive, and his dedication to ensuring the reliability and stability of our software was invaluable. His good sense of humor and pleasant demeanor made him a joy to work with.</div>
+      <div class="who"><b>Elio Capella</b>Head of Development, Filestage</div>
+    </div>
+    <div class="cell voice reveal">
+      <div class="lbl">Recommendation</div>
+      <div class="q">His technical skills are outstanding, encompassing both front-end and back-end technologies. What truly sets him apart is his exceptional empathy, enabling him to understand and address the needs of clients and end-users in the solutions he creates.</div>
+      <div class="who"><b>Klaas Hermans</b>Product Manager, Filestage</div>
+    </div>
+    <div class="cell voice reveal">
+      <div class="lbl">Network</div>
+      <div class="q" style="font-style:normal">Vetted member of the <b style="color:var(--text)">Toptal</b> freelance network — screened for technical skill and communication, among the top tier of applicants.</div>
+      <div class="who"><b>Toptal</b>TypeScript Engineer · since 2022</div>
+    </div>
+
+    <div class="divider">
+      <h2>How I <em>work</em></h2>
+    </div>
+
+    <div class="cell prin reveal"><h4>Instrument everything</h4><p>I like knowing how a system is doing before anyone has to report a problem. Monitoring and logging are part of the feature, not an afterthought.</p></div>
+    <div class="cell prin reveal"><h4>Own the hard parts</h4><p>Payments, retries, race conditions — the unglamorous work where products actually break. I've come to genuinely enjoy it.</p></div>
+    <div class="cell prin reveal"><h4>Boring over clever</h4><p>Code gets read by tired people under pressure. I'd rather write something plain and predictable than something clever.</p></div>
+    <div class="cell prin reveal"><h4>Raise the bar</h4><p>Good standards, honest reviews and better hiring help the whole team move faster. That work compounds.</p></div>
+
+    <div class="cell stack reveal">
+      <div class="lbl">Toolkit</div>
+      <div class="groups">
+        <div><h4>Core</h4><ul><li class="hi">TypeScript</li><li class="hi">React / Next.js</li><li class="hi">Node.js</li><li>GraphQL · Express</li><li>Angular · PHP</li></ul></div>
+        <div><h4>Data</h4><ul><li class="hi">PostgreSQL</li><li>MySQL · MongoDB</li><li class="hi">BigQuery</li><li>RedShift</li></ul></div>
+        <div><h4>Ops</h4><ul><li class="hi">Datadog</li><li>Sentry · PostHog</li><li>Docker · AWS</li><li>GH Actions · Jenkins</li></ul></div>
+        <div><h4>Quality</h4><ul><li class="hi">Jest · Playwright</li><li>Redux · Zustand</li><li>React Query</li><li>Storybook</li></ul></div>
+      </div>
+    </div>
+
+    <div class="cell meta reveal">
+      <div class="lbl">Details</div>
+      <div class="row"><span>Location</span><b>Berlin, Germany</b></div>
+      <div class="row"><span>Education</span><b>BSc Computer Science, IBA</b></div>
+      <div class="row"><span>English</span><b>Full professional</b></div>
+      <div class="row"><span>Urdu</span><b>Native</b></div>
+      <div class="row"><span>German</span><b>Basic (learning)</b></div>
+    </div>
+
+    <div class="cell contact reveal">
+      <h2>Have a hard problem? <em>Let's talk.</em></h2>
+      <p>Payments, pipelines, event-driven systems — the messier, the better.</p>
+      <div class="btns">
+        <a class="btn pri" href="mailto:raheedfarooq65@gmail.com">raheedfarooq65@gmail.com</a>
+        <a class="btn sec" href="https://github.com/RaheedFarooq">GitHub</a>
+        <a class="btn sec" href="https://de.linkedin.com/in/raheed-farooq">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

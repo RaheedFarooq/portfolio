@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheed Farooq — Mockup C · Swiss Grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F1EFEA; --black:#0B0B0A; --red:#E0301E; --gray:#8D8A82; --line:#0B0B0A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bone); color:var(--black);
+    font-family:'Archivo',sans-serif; font-size:16px; line-height:1.6;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 36px}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:var(--bone)}
+
+  /* ——— top bar ——— */
+  .topbar{border-bottom:3px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 36px;
+    font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .topbar .co{color:var(--red)}
+
+  /* ——— hero ——— */
+  .hero{border-bottom:3px solid var(--line)}
+  .hero .wrap{padding-top:64px;padding-bottom:44px}
+  .kicker{display:flex;gap:26px;font-size:12px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gray);margin-bottom:18px}
+  .kicker .live{color:var(--red)}
+  h1{
+    font-weight:900;font-variation-settings:'wdth' 118;
+    font-size:clamp(64px,13.5vw,176px);line-height:.86;letter-spacing:-.028em;
+    text-transform:uppercase;
+  }
+  h1 .l2{display:block;color:transparent;-webkit-text-stroke:2.5px var(--black)}
+  .hero-foot{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1.5px solid var(--line);margin-top:52px}
+  .hero-cell{padding:20px 22px 0 22px;border-right:1.5px solid var(--line);font-size:14px}
+  .hero-cell:first-child{padding-left:0}
+  .hero-cell:last-child{border-right:none}
+  .hero-cell .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+    display:block;margin-bottom:8px;font-weight:600}
+  .hero-cell b{font-weight:700}
+
+  /* ——— ticker ——— */
+  .ticker{border-bottom:3px solid var(--line);overflow:hidden;background:var(--black);color:var(--bone)}
+  .ticker-inner{display:flex;white-space:nowrap;animation:scroll 26s linear infinite;padding:12px 0;
+    font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .ticker-inner span{padding:0 28px}
+  .ticker-inner .r{color:var(--red)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ——— sections ——— */
+  section{border-bottom:3px solid var(--line)}
+  .sec-grid{display:grid;grid-template-columns:280px 1fr}
+  .sec-label{border-right:1.5px solid var(--line);padding:34px 28px 34px 0}
+  .sec-label .sticky{position:sticky;top:26px}
+  .sec-label .idx{font-size:13px;font-weight:800;color:var(--red);letter-spacing:.1em}
+  .sec-label h2{font-weight:900;font-size:clamp(26px,3vw,38px);text-transform:uppercase;
+    letter-spacing:-.01em;line-height:1;margin-top:8px}
+  .sec-body{padding:34px 0 40px 40px}
+
+  /* about */
+  .about-lede{font-size:clamp(20px,2.4vw,28px);font-weight:500;line-height:1.42;max-width:34ch}
+  .about-lede .hl{background:var(--black);color:var(--bone);padding:0 8px}
+  .about-lede .rd{color:var(--red);font-weight:700}
+  .about-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:30px;
+    font-size:14.5px;color:#3E3B35;max-width:76ch}
+  .about-cols b{color:var(--black)}
+
+  /* experience table */
+  .xp-row{display:grid;grid-template-columns:120px 1fr 1.5fr;gap:26px;padding:26px 0;
+    border-bottom:1.5px solid var(--line);transition:background .15s,color .15s;cursor:default}
+  .xp-row:last-child{border-bottom:none}
+  .xp-row:hover{background:var(--black);color:var(--bone);
+    box-shadow:40px 0 0 var(--black),-40px 0 0 var(--black)}
+  .xp-row:hover .xp-stack{color:var(--bone);opacity:.7}
+  .xp-row:hover .xp-yr{color:var(--red)}
+  .xp-yr{font-weight:800;font-size:15px;color:var(--red)}
+  .xp-co h3{font-weight:900;font-size:clamp(19px,2.1vw,26px);text-transform:uppercase;line-height:1.05}
+  .xp-co .role{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-top:6px}
+  .xp-row:hover .xp-co .role{color:var(--bone);opacity:.7}
+  .xp-desc{font-size:14.5px;line-height:1.62}
+  .xp-stack{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:10px;font-weight:600}
+
+  /* work plates */
+  .work{display:grid;grid-template-columns:1fr 1fr}
+  .plate{padding:34px 30px 38px;border-bottom:1.5px solid var(--line);position:relative;
+    transition:background .15s,color .15s}
+  .plate:nth-child(odd){border-right:1.5px solid var(--line)}
+  .plate:nth-last-child(-n+2){border-bottom:none}
+  .plate:hover{background:var(--red);color:var(--bone)}
+  .plate:hover .p-meta,.plate:hover .p-desc{color:var(--bone)}
+  .plate:hover .p-no{color:var(--bone);opacity:.55}
+  .plate .p-no{font-size:44px;font-weight:900;color:transparent;-webkit-text-stroke:1.5px currentColor;
+    opacity:.35;line-height:1}
+  .plate h3{font-weight:900;font-size:clamp(26px,3.4vw,42px);text-transform:uppercase;
+    letter-spacing:-.015em;margin:14px 0 10px;line-height:.95}
+  .plate .p-desc{font-size:14.5px;color:#3E3B35;max-width:44ch;line-height:1.6}
+  .plate .p-meta{display:flex;gap:22px;margin-top:20px;font-size:11.5px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+  .plate .p-meta a{border-bottom:2px solid currentColor;padding-bottom:2px}
+  .plate .arrow{position:absolute;top:34px;right:30px;font-size:26px;font-weight:900;
+    transition:transform .2s}
+  .plate:hover .arrow{transform:translate(4px,-4px)}
+
+  /* skills wall */
+  .wall{display:flex;flex-wrap:wrap;gap:10px;max-width:900px}
+  .chip{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    border:1.5px solid var(--line);padding:8px 16px;transition:background .12s,color .12s;cursor:default}
+  .chip:hover{background:var(--black);color:var(--bone)}
+  .chip.core{background:var(--black);color:var(--bone)}
+  .chip.core:hover{background:var(--red);border-color:var(--red)}
+  .wall-note{margin-top:22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);font-weight:600}
+  .wall-note i{font-style:normal;color:var(--red)}
+
+  /* footer */
+  footer{background:var(--black);color:var(--bone)}
+  footer .wrap{padding:70px 36px 60px}
+  footer .f-kick{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+  footer .f-big{font-weight:900;font-size:clamp(38px,7vw,92px);text-transform:uppercase;
+    line-height:.92;letter-spacing:-.02em}
+  footer .f-big a{border-bottom:5px solid var(--red);transition:color .15s}
+  footer .f-big a:hover{color:var(--red)}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1.5px solid #2A2A28;
+    margin-top:54px;padding-top:24px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .f-grid a{border-bottom:1.5px solid #3A3A38;padding-bottom:2px;transition:color .15s,border-color .15s}
+  .f-grid a:hover{color:var(--red);border-color:var(--red)}
+  .f-grid > div:nth-child(2){text-align:center}
+  .f-grid > div:last-child{text-align:right}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media (max-width:900px){
+    .sec-grid{grid-template-columns:1fr}
+    .sec-label{border-right:none;border-bottom:1.5px solid var(--line);padding:26px 0 18px}
+    .sec-body{padding:26px 0 34px}
+    .xp-row{grid-template-columns:1fr;gap:10px}
+    .work{grid-template-columns:1fr}
+    .plate:nth-child(odd){border-right:none}
+    .plate:nth-last-child(-n+2){border-bottom:1.5px solid var(--line)}
+    .plate:last-child{border-bottom:none}
+    .hero-foot{grid-template-columns:1fr}
+    .hero-cell{border-right:none;border-bottom:1.5px solid var(--line);padding:16px 0}
+    .hero-cell:last-child{border-bottom:none}
+    .about-cols{grid-template-columns:1fr}
+    .f-grid{grid-template-columns:1fr;gap:14px}
+    .f-grid > div{text-align:left!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="co">RF — Berlin</span>
+    <span>Full-Stack Engineer</span>
+    <span>52.52°N / 13.40°E</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span class="live">● Open to interesting problems</span>
+      <span>Since 2019</span>
+      <span>TypeScript, end to end</span>
+    </div>
+    <h1>Raheed<span class="l2">Farooq</span></h1>
+    <div class="hero-foot">
+      <div class="hero-cell">
+        <span class="lbl">Practice</span>
+        High-traffic <b>TypeScript products</b>, built end to end — front-end to data layer.
+      </div>
+      <div class="hero-cell">
+        <span class="lbl">Specialty</span>
+        <b>Payments · event-driven systems · pipelines · observability.</b> The gnarly parts.
+      </div>
+      <div class="hero-cell">
+        <span class="lbl">Currently</span>
+        Building booking &amp; loyalty infrastructure in Berlin. <b>Toptal-vetted.</b>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>TypeScript</span><span class="r">●</span><span>React / Next.js</span><span class="r">●</span>
+    <span>Node.js</span><span class="r">●</span><span>GraphQL</span><span class="r">●</span>
+    <span>PostgreSQL</span><span class="r">●</span><span>BigQuery</span><span class="r">●</span>
+    <span>Datadog</span><span class="r">●</span><span>AWS</span><span class="r">●</span>
+    <span>TypeScript</span><span class="r">●</span><span>React / Next.js</span><span class="r">●</span>
+    <span>Node.js</span><span class="r">●</span><span>GraphQL</span><span class="r">●</span>
+    <span>PostgreSQL</span><span class="r">●</span><span>BigQuery</span><span class="r">●</span>
+    <span>Datadog</span><span class="r">●</span><span>AWS</span><span class="r">●</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap sec-grid">
+    <div class="sec-label"><div class="sticky"><div class="idx">01 /</div><h2>Position</h2></div></div>
+    <div class="sec-body">
+      <p class="about-lede">I build the parts most people avoid: <span class="hl">payments &amp; billing</span>, event-driven reward flows, ETL pipelines — and the <span class="rd">observability</span> that keeps them honest.</p>
+      <div class="about-cols">
+        <p>Full-stack engineer shipping high-traffic TypeScript products end to end: <b>React/Next.js</b> front-ends, <b>Node.js</b> services, and the data layers underneath. Strong on architecture and third-party integrations — Chargebee, Salesforce, the works.</p>
+        <p>I instrument what I ship with <b>Datadog, Sentry and PostHog</b>, so failures are visible instead of guessed. Beyond features: setting engineering standards, leading architecture decisions, and once rebuilding an entire hiring process from scratch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap sec-grid">
+    <div class="sec-label"><div class="sticky"><div class="idx">02 /</div><h2>Record</h2></div></div>
+    <div class="sec-body">
+      <div class="xp-row">
+        <div class="xp-yr">2023—NOW</div>
+        <div class="xp-co"><h3>reisetopia</h3><div class="role">TypeScript Fullstack Engineer</div></div>
+        <div class="xp-desc">Chargebee billing through the full webhook lifecycle. A rewards state machine with idempotent crediting. ETL into BigQuery. Datadog + PostHog instrumentation. Rebuilt the hiring process end to end.
+          <div class="xp-stack">TS · Next.js · Node · MySQL · Salesforce · Datadog</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-yr">2021—23</div>
+        <div class="xp-co"><h3>Filestage</h3><div class="role">JS Fullstack Engineer</div></div>
+        <div class="xp-desc">Event automation with user-configured triggers. AngularJS→React migration in a monorepo. Real-time on WebSockets. Stabilised a flaky test suite until CI meant something.
+          <div class="xp-stack">TS · React · Node · WebSockets · Jest · Playwright</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-yr">2019—21</div>
+        <div class="xp-co"><h3>Creative Chaos</h3><div class="role">Software Engineer ← Associate</div></div>
+        <div class="xp-desc">Data-intensive charting platform. GraphQL on Apollo. PostgreSQL with an AWS RedShift data lake. Serverless workflows on Lambda.
+          <div class="xp-stack">JS · React · GraphQL · PostgreSQL · RedShift · Lambda</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap sec-grid">
+    <div class="sec-label"><div class="sticky"><div class="idx">03 /</div><h2>Selected Work</h2></div></div>
+    <div class="sec-body" style="padding-left:0;padding-right:0">
+      <div class="work">
+        <a class="plate" href="https://voyager-rouge-nine.vercel.app">
+          <div class="p-no">01</div><span class="arrow">↗</span>
+          <h3>Voyager</h3>
+          <p class="p-desc">An interactive 3D globe of world history — who was alive, anywhere on Earth, at any moment across 5,000 years. React, TypeScript, Three.js, procedural WebGL.</p>
+          <div class="p-meta"><span>Live demo</span><span>Three.js / R3F</span></div>
+        </a>
+        <a class="plate" href="https://github.com/RaheedFarooq/shark">
+          <div class="p-no">02</div><span class="arrow">↗</span>
+          <h3>Shark</h3>
+          <p class="p-desc">A brutally honest AI product evaluator for Claude Code — scored teardowns, competitive research, and strategic action plans. No cheerleading.</p>
+          <div class="p-meta"><span>Open source</span><span>Claude Code skill</span></div>
+        </a>
+        <a class="plate" href="https://github.com/RaheedFarooq/customendpoints_api" style="border-bottom:none">
+          <div class="p-no">03</div><span class="arrow">↗</span>
+          <h3>CustomApis</h3>
+          <p class="p-desc">Schema-based mock API generator — describe the shape, get live fake endpoints. Node.js + Firestore, React + Tailwind.</p>
+          <div class="p-meta"><span>Open source</span><span>Node / Firestore</span></div>
+        </a>
+        <div class="plate" style="border-bottom:none;display:grid;place-items:center">
+          <div style="text-align:center">
+            <div style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)">More on</div>
+            <a href="https://github.com/RaheedFarooq" style="font-weight:900;font-size:24px;text-transform:uppercase;border-bottom:3px solid var(--red)">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap sec-grid">
+    <div class="sec-label"><div class="sticky"><div class="idx">04 /</div><h2>Toolkit</h2></div></div>
+    <div class="sec-body">
+      <div class="wall">
+        <span class="chip core">TypeScript</span><span class="chip core">React</span><span class="chip core">Next.js</span>
+        <span class="chip core">Node.js</span><span class="chip">Express</span><span class="chip">Angular</span>
+        <span class="chip">GraphQL</span><span class="chip">PHP</span>
+        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MongoDB</span>
+        <span class="chip core">BigQuery</span><span class="chip">RedShift</span>
+        <span class="chip core">Datadog</span><span class="chip">Sentry</span><span class="chip">PostHog</span>
+        <span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span>
+        <span class="chip">Jest</span><span class="chip">Playwright</span><span class="chip">Redux</span>
+        <span class="chip">Zustand</span><span class="chip">React Query</span><span class="chip">Storybook</span>
+      </div>
+      <div class="wall-note"><i>■</i> Filled = daily drivers</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-kick">Have a gnarly problem?</div>
+    <div class="f-big">Let's <a href="mailto:raheedfarooq65@gmail.com">talk.</a></div>
+    <div class="f-grid">
+      <div><a href="https://github.com/RaheedFarooq">GitHub</a></div>
+      <div><a href="https://de.linkedin.com/in/raheed-farooq">LinkedIn</a></div>
+      <div>Berlin — 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
