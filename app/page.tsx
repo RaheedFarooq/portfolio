@@ -5,7 +5,7 @@ const LINKS = {
   email: "mailto:raheedfarooq65@gmail.com",
   github: "https://github.com/RaheedFarooq",
   linkedin: "https://de.linkedin.com/in/raheed-farooq",
-  voyager: "https://voyager-rouge-nine.vercel.app",
+  voyager: "https://timevoyager.vercel.app",
   voyagerSrc: "https://github.com/RaheedFarooq/Voyager",
   shark: "https://github.com/RaheedFarooq/shark",
 };
@@ -257,7 +257,7 @@ export default function Home() {
               loading="lazy"
               title="Voyager live demo"
             />
-            <div className="cap">live embed · voyager-rouge-nine.vercel.app</div>
+            <div className="cap">live embed · timevoyager.vercel.app</div>
           </div>
         </Reveal>
 
