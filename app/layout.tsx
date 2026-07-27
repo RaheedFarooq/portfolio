@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "Full-stack engineer in Berlin building high-traffic TypeScript products end to end: payments, event-driven systems, data pipelines, and the monitoring around them.",
   alternates: { canonical: "/" },
+  verification: { google: "-tabTm3AdZm0NdQapl7Wg3m4fA12M4EVnP_3GBwpu9w" },
   openGraph: {
     title: "Raheed Farooq · Full-Stack Software Engineer",
     description:
