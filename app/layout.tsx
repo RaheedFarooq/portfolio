@@ -13,15 +13,36 @@ const mono = Spline_Sans_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://raheedfarooq.vercel.app"),
   title: "Raheed Farooq · Full-Stack Software Engineer",
   description:
     "Full-stack engineer in Berlin building high-traffic TypeScript products end to end: payments, event-driven systems, data pipelines, and the monitoring around them.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Raheed Farooq · Full-Stack Software Engineer",
     description:
       "High-traffic TypeScript products, end to end. Payments, event-driven systems, pipelines, observability.",
+    url: "https://raheedfarooq.vercel.app",
     type: "website",
   },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Raheed Farooq",
+  jobTitle: "Full-Stack Software Engineer",
+  url: "https://raheedfarooq.vercel.app",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Berlin",
+    addressCountry: "DE",
+  },
+  sameAs: [
+    "https://github.com/RaheedFarooq",
+    "https://de.linkedin.com/in/raheed-farooq",
+    "https://www.toptal.com/developers/resume/raheed-farooq",
+  ],
 };
 
 export default function RootLayout({
@@ -31,7 +52,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${sans.variable} ${mono.variable}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
