@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import Gallery from "@/components/Gallery";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const LINKS = {
   email: "mailto:raheedfarooq65@gmail.com",
@@ -60,9 +61,12 @@ export default function Home() {
             <span>Full-Stack Engineer · Berlin</span>
           </div>
         </div>
-        <a className="cta" href={LINKS.linkedin} target="_blank" rel="noopener">
-          Get in touch
-        </a>
+        <div className="top-actions">
+          <ThemeToggle />
+          <a className="cta" href={LINKS.linkedin} target="_blank" rel="noopener">
+            Get in touch
+          </a>
+        </div>
       </div>
 
       <div className="bento">

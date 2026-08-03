@@ -7,11 +7,42 @@
   --text: #e7e7ec;
   --dim: #8a8a96;
   --faint: #55555f;
+  /* accent fills — identical in both themes, always carry dark text */
   --lime: #c8f04c;
   --coral: #ff6d5a;
   --sky: #6db5ff;
   --violet: #b79dff;
   --gold: #f0c04c;
+  /* accent inks — used wherever the accent is text */
+  --lime-ink: #c8f04c;
+  --coral-ink: #ff6d5a;
+  --sky-ink: #6db5ff;
+  --violet-ink: #b79dff;
+  --gold-ink: #f0c04c;
+  --lime-soft: rgba(200, 240, 76, 0.35);
+  --sky-soft: rgba(109, 181, 255, 0.4);
+  --coral-soft: rgba(255, 109, 90, 0.4);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f4f4ef;
+  --card: #ffffff;
+  --card-2: #efefe9;
+  --edge: #e2e2da;
+  --edge-hi: #c9c9bf;
+  --text: #191a17;
+  --dim: #5d5f58;
+  --faint: #90928a;
+  --lime-ink: #557a00;
+  --coral-ink: #c43a22;
+  --sky-ink: #1d6fc2;
+  --violet-ink: #6a48c9;
+  --gold-ink: #96700f;
+  --lime-soft: rgba(85, 122, 0, 0.45);
+  --sky-soft: rgba(29, 111, 194, 0.45);
+  --coral-soft: rgba(196, 58, 34, 0.45);
+  color-scheme: light;
 }
 
 * {
@@ -27,6 +58,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-family: var(--font-sans), sans-serif;
   font-size: 16px;
   line-height: 1.65;
@@ -89,7 +121,7 @@ a {
   font-size: 14px;
   font-weight: 600;
   background: var(--text);
-  color: #101014;
+  color: var(--bg);
   padding: 11px 22px;
   border-radius: 100px;
   white-space: nowrap;
@@ -99,6 +131,29 @@ a {
 .top .cta:hover {
   transform: scale(1.04);
   background: var(--lime);
+  color: #15200a;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--edge-hi);
+  background: var(--card);
+  color: var(--dim);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background-color 0.3s ease;
+}
+.theme-btn:hover {
+  color: var(--lime-ink);
+  border-color: var(--lime-ink);
 }
 
 /* bento grid */
@@ -157,7 +212,7 @@ a {
 }
 .hero h1 em {
   font-style: normal;
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .hero p {
   color: var(--dim);
@@ -251,7 +306,7 @@ a {
   display: block;
   font-size: 26px;
   font-weight: 750;
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .num span {
   font-size: 11px;
@@ -259,19 +314,19 @@ a {
   letter-spacing: 0.06em;
 }
 .num:nth-child(2) b {
-  color: var(--sky);
+  color: var(--sky-ink);
 }
 .num:nth-child(3) b {
-  color: var(--coral);
+  color: var(--coral-ink);
 }
 .num:nth-child(4) b {
-  color: var(--violet);
+  color: var(--violet-ink);
 }
 .num:nth-child(5) b {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 .num:nth-child(6) b {
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 
 /* section divider */
@@ -288,7 +343,7 @@ a {
 }
 .divider h2 em {
   font-style: normal;
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .divider p {
   color: var(--faint);
@@ -332,17 +387,17 @@ a {
   color: var(--dim);
 }
 .story .out b {
-  color: var(--lime);
+  color: var(--lime-ink);
   font-weight: 600;
 }
 .story.s2 .out b {
-  color: var(--sky);
+  color: var(--sky-ink);
 }
 .story.s3 .out b {
-  color: var(--coral);
+  color: var(--coral-ink);
 }
 .story.s4 .out b {
-  color: var(--violet);
+  color: var(--violet-ink);
 }
 
 /* deep project cells */
@@ -389,7 +444,7 @@ a {
   content: "▸";
   position: absolute;
   left: 2px;
-  color: var(--sky);
+  color: var(--sky-ink);
 }
 .proj-copy li b {
   color: var(--text);
@@ -404,8 +459,8 @@ a {
   font-size: 12.5px;
 }
 .proj-copy .links a {
-  color: var(--sky);
-  border-bottom: 1px solid rgba(109, 181, 255, 0.4);
+  color: var(--sky-ink);
+  border-bottom: 1px solid var(--sky-soft);
   padding-bottom: 2px;
 }
 .proj-visual {
@@ -445,11 +500,11 @@ a {
   background: var(--coral);
 }
 .proj-deep.flip .proj-copy li::before {
-  color: var(--coral);
+  color: var(--coral-ink);
 }
 .proj-deep.flip .proj-copy .links a {
-  color: var(--coral);
-  border-color: rgba(255, 109, 90, 0.4);
+  color: var(--coral-ink);
+  border-color: var(--coral-soft);
 }
 
 /* artifact panels */
@@ -468,7 +523,7 @@ a {
   color: var(--faint);
 }
 .artifact .bar {
-  color: var(--coral);
+  color: var(--coral-ink);
 }
 .artifact .num-v {
   color: var(--text);
@@ -480,16 +535,16 @@ a {
   color: var(--text);
 }
 .artifact .verdict b {
-  color: var(--coral);
+  color: var(--coral-ink);
 }
 .artifact .k {
-  color: var(--violet);
+  color: var(--violet-ink);
 }
 .artifact .s {
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .artifact .n {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 .artifact .c {
   color: var(--faint);
@@ -583,7 +638,7 @@ a {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--gold);
+  color: var(--gold-ink);
   font-weight: 700;
 }
 .xp li b {
@@ -609,7 +664,7 @@ a {
 }
 .voice .q::before {
   content: "“";
-  color: var(--violet);
+  color: var(--violet-ink);
   font-size: 34px;
   line-height: 0;
   vertical-align: -12px;
@@ -707,7 +762,7 @@ a {
   font-family: var(--font-mono), monospace;
   font-size: 12px;
   letter-spacing: 0.08em;
-  color: var(--dim);
+  color: #9a9aa4;
 }
 .lb-close,
 .lb-nav {
@@ -717,9 +772,9 @@ a {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1px solid var(--edge-hi);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   background: rgba(23, 23, 29, 0.75);
-  color: var(--text);
+  color: #e7e7ec;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
@@ -777,10 +832,10 @@ a {
   font-size: 15.5px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .prin:nth-of-type(odd) h4 {
-  color: var(--sky);
+  color: var(--sky-ink);
 }
 .prin p {
   font-size: 12.5px;
@@ -857,7 +912,7 @@ a {
 }
 .contact h2 em {
   font-style: normal;
-  color: var(--lime);
+  color: var(--lime-ink);
 }
 .contact p {
   color: var(--dim);
@@ -888,8 +943,8 @@ a {
   color: var(--text);
 }
 .btn.sec:hover {
-  border-color: var(--lime);
-  color: var(--lime);
+  border-color: var(--lime-ink);
+  color: var(--lime-ink);
 }
 
 footer {
@@ -929,6 +984,10 @@ footer {
   .top .cta {
     padding: 9px 15px;
     font-size: 12.5px;
+  }
+  .theme-btn {
+    width: 36px;
+    height: 36px;
   }
 }
 
