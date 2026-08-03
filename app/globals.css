@@ -507,47 +507,48 @@ a {
   border-color: var(--coral-soft);
 }
 
-/* artifact panels */
+/* artifact panels — terminal printouts, deliberately dark in both themes */
 .artifact {
   padding: 26px;
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
   line-height: 1.9;
-  color: var(--dim);
+  background: #15151b;
+  color: #8a8a96;
   overflow: auto;
   position: relative;
   height: 100%;
   white-space: pre-wrap;
 }
 .artifact .t {
-  color: var(--faint);
+  color: #55555f;
 }
 .artifact .bar {
-  color: var(--coral-ink);
+  color: #ff6d5a;
 }
 .artifact .num-v {
-  color: var(--text);
+  color: #e7e7ec;
 }
 .artifact .verdict {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px dashed var(--edge-hi);
-  color: var(--text);
+  border-top: 1px dashed #3a3a46;
+  color: #e7e7ec;
 }
 .artifact .verdict b {
-  color: var(--coral-ink);
+  color: #ff6d5a;
 }
 .artifact .k {
-  color: var(--violet-ink);
+  color: #b79dff;
 }
 .artifact .s {
-  color: var(--lime-ink);
+  color: #c8f04c;
 }
 .artifact .n {
-  color: var(--gold-ink);
+  color: #f0c04c;
 }
 .artifact .c {
-  color: var(--faint);
+  color: #55555f;
 }
 
 /* small project cells */
@@ -870,6 +871,16 @@ a {
 .stack li.hi {
   color: var(--text);
   font-weight: 600;
+}
+.stack-note {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 18px;
+  border-top: 1px solid var(--edge);
+  padding-top: 12px;
 }
 .stack .lbl::before {
   background: var(--violet);

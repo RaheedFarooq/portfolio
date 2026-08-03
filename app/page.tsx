@@ -640,6 +640,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
+          <div className="stack-note">Bold = daily drivers</div>
         </Reveal>
 
         <Reveal className="cell meta">
